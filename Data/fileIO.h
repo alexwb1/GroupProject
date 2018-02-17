@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <regex>
 #include <Security.h>
 
 class fileReader{
@@ -24,7 +25,7 @@ while (inFile >> str) {
   document = document + str;
 	}
 
-	is.close();
+	ifstream.close(); // closes the input file stream
 
 	}
 
@@ -32,11 +33,33 @@ while (inFile >> str) {
 
 	void writeFile(){// I am not sure why you would ever need to write a file but okay
 		  ofstream myfile;
-		  myfile.open ("output.biatch");
+		  myfile.open("output.biatch");
 		  myfile << "Writing this to a biatch file.\n";
 		  myfile.close();
 	}// end writeFile()
 
+void parser(string input){
+	
+	regex datetime("\\d"); //captures a digit. the function can be named anything
+	regex price("\\d");
+	std::cin>>userInput;
+ 	if(!std::cin)
+ 	{
+ 		break;
+ 	} 
+ 	if(userInput=="q")
+ 	{
+ 		break; //stops if the user enters "q"
+ 	}
+	if(regex_match(input, datetime))
+	{
+		cout << datetime << endl;
+	} 
+	else
+	{	
+		 cerr << "There was an error reading the data. << endl;
+	}
+}
 
 
 

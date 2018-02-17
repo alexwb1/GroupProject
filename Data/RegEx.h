@@ -12,6 +12,7 @@ int main() {
  	if(input=="q") break; //stops if the user enters "q"
 	if(regex_match(input, blahblah)) cout << blahblah << endl;
 	else cerr << "No blahblah's were found!" << endl;
+	return 0;
 }
 
 /*
