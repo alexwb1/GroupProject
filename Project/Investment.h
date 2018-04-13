@@ -4,7 +4,6 @@
 
 #ifndef UNTITLED10_INVESTMENT_H
 #define UNTITLED10_INVESTMENT_H
-
 #include <iostream>
 #include "Bank.h"
 

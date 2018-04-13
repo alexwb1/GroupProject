@@ -4,9 +4,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>
-
+#include <limits>
 #include "Bank.h"
 #include "Investment.h"
+#include "Advisor.h"
 
 using namespace std;
 
@@ -29,20 +30,24 @@ int main() {
     return 0;
 }
 
-//MAIN MENU METHOD
+//MAIN MENU METHOD////////////////////////////////////////////////////////////////////
 void mainMenu(Bank inputBank){
 
     Bank UsersBank = inputBank;
+    Advisor* advisor = new Advisor();
     bool programActive;
     int day = 1;
 
     do {
+
         bool menuActive = true;
         int userInput;
+        string name="";
 
         cout << "Welcome to your new bank!" << endl;
         cout << " " << endl;
-        cout << "Hello, I am your teller, " << "Max" << "." << endl; //ADD TELLER NAME HERE
+        cout << advisor->getFace() << endl;
+        cout << "Hello, I will be your advisor, " << advisor->getName() << "." << endl; //ADD TELLER NAME HERE
         cout << "What is your name?" << endl;
         string userName;
         cin >> userName;
@@ -91,60 +96,92 @@ void mainMenu(Bank inputBank){
             cout << "3. Modify investments" << endl;
             cout << "4. Leave bank and end day" << endl;
             cin >> userInput;
-            if (userInput == 1) {
+            switch(userInput){
+                case 1:{
                 cout << " " << endl;
                 cout << "Bank: " << UsersBank.getBankName() << endl;
                 cout << "Account Holder: " << UsersBank.getAccountHolderName() << endl;
                 cout << "Balance: $" << UsersBank.getAccountBalance() << endl;
-            }
-            else if (userInput == 2) {
+                }
+                case 2: {
                 cout << " " << endl;
                 cout << "Investment 1: " << UsersBank.getInvestment1().getName() << endl;
+                    float balance1 = UsersBank.getInvestment1().getTotalInvestment();   //This code applies modifications to the price
+                    balance1 = (balance1*(rand()%10)/100) + balance1;                  //
+                    UsersBank.getInvestment1().setTotalInvestment(balance1);            //
                 cout << "Investment 1 Shares: " << UsersBank.getInvestment1().getNumberOwned() << endl;
-                cout << "Total Investment: " << UsersBank.getInvestment1().getTotalInvestment() << endl;
+                cout << "Total Investment: " << balance1 << endl;
                 cout << " " << endl;
                 cout << "Investment 2: " << UsersBank.getInvestment2().getName() << endl;
+                    float balance2 = UsersBank.getInvestment2().getTotalInvestment();
+                    balance2 = (balance2*(rand()%10)/100) + balance2;
+                    UsersBank.getInvestment2().setTotalInvestment(balance2);
                 cout << "Investment 2 Shares: " << UsersBank.getInvestment2().getNumberOwned() << endl;
-                cout << "Total Investment: " << UsersBank.getInvestment2().getTotalInvestment() << endl;
+                cout << "Total Investment: " << balance2 << endl;
                 cout << " " << endl;
                 cout << "Investment 3: " << UsersBank.getInvestment3().getName() << endl;
+                    float balance3 = UsersBank.getInvestment3().getTotalInvestment();
+                    balance3 = (balance3*(rand()%10)/100) + balance3;
+                    UsersBank.getInvestment3().setTotalInvestment(balance3);
                 cout << "Investment 3 Shares: " << UsersBank.getInvestment3().getNumberOwned() << endl;
-                cout << "Total Investment: " << UsersBank.getInvestment3().getTotalInvestment() << endl;
+                cout << "Total Investment: " << balance3 << endl;
                 cout << " " << endl;
                 cout << "Investment 4: " << UsersBank.getInvestment4().getName() << endl;
+                    float balance4 = UsersBank.getInvestment4().getTotalInvestment();
+                    balance4 = (balance4*(rand()%10)/100) + balance4;
+                    UsersBank.getInvestment4().setTotalInvestment(balance4);
                 cout << "Investment 4 Shares: " << UsersBank.getInvestment4().getNumberOwned() << endl;
-                cout << "Total Investment: " << UsersBank.getInvestment4().getTotalInvestment() << endl;
+                cout << "Total Investment: " << balance4 << endl;
                 cout << " " << endl;
                 cout << "Investment 5: " << UsersBank.getInvestment5().getName() << endl;
+                    float balance5 = UsersBank.getInvestment5().getTotalInvestment();
+                    balance5 = (balance5*(rand()%10)/100) + balance5;
+                    UsersBank.getInvestment5().setTotalInvestment(balance5);
                 cout << "Investment 5 Shares: " << UsersBank.getInvestment5().getNumberOwned() << endl;
-                cout << "Total Investment: " << UsersBank.getInvestment5().getTotalInvestment() << endl;
+                cout << "Total Investment: " << balance5 << endl;
                 cout << " " << endl;
-            }
-            else if (userInput == 3){
-            }
-            else if (userInput == 4){
-                if (day >= 10){
+                    break;
+                }
+                case 3:
+                {
+                    //  NEED CODE HERE!!!!
+
+                break;
+                }
+                case 4: {
+                    if (day >= 10)
+                    {
                     cout << "You have reached the end of the simulation!" << endl;
                     cout << " " << endl;
                     cout << "Press ENTER to see how you did overall" << endl;
                     menuActive = false;
                     programActive = false;
+                    break;
+                    }
+                    else
+                    {
+                         day++;
+                    }
+                    break;
                 }
-                else {
-                    day++;
+                case 5:
+                {
+                    // NEED CODE HERE!!!!
+                    break;
                 }
-            }
-            else if (userInput == 5){
-            }
-            else {
-                cout << "Please enter a valid option" << endl;
-                cin.clear(); //Clear error flags
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear the input buffer
-            }
+                default:
+                {
+                    cout << "Please enter a valid option" << endl;
+                    cin.clear(); //Clear error flags
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clear the input buffer
+                }
+        }
+
         } while (menuActive);
     } while (programActive);
 
     cout << "OVERALL ANALYSIS:" << endl;
+    /*     --- ADD CODE HERE!!!! ---*/
 }
 
 //////////////////////////////////////StartUp//////////////////////////////////////
@@ -308,7 +345,7 @@ Bank bankSelector(float initialCapital){
                 //FEES GENERATION
                 UserBank.setMaxFee(70);      //MEDIUM INITIAL FEE OFFERED BY FINANCIAL SERVICES
                 UserBank.setMinFee(50);      //MEDIUM INITIAL FEE OFFERED BY FINANCIAL SERVICES
-                UserBank.setFee(rand() %  + (UserBank.getMaxFee() - UserBank.getMinFee()) + UserBank.getMinFee());
+                UserBank.setFee(rand() % (UserBank.getMaxFee() - UserBank.getMinFee()) + UserBank.getMinFee());
                 //Information Setters
                 UserBank.setBankName("Steal My Money Financial Services");
                 UserBank.setBankType("Financial Services");
@@ -342,7 +379,7 @@ Bank bankSelector(float initialCapital){
 
         while (bankChoiceBool){
 
-            cout << "Would you like to set up an account with this bank?" << endl;
+            cout << "Would you like to set up an account with this bank? y/n" << endl;
             cin >> bankChoice;
 
             if (bankChoice == "Yes" || bankChoice == "Y" || bankChoice == "yes" || bankChoice == "y"){

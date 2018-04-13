@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Investment.h"
 using namespace std;
-
+/*-----------------  class Bank declaration -------------------*/
 class Bank {
 
 private:
