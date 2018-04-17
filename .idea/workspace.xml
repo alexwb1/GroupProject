@@ -12,12 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56d8f491-838d-4875-8187-c19f16151faf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GroupProject.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GroupProject.dir/src/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GroupProject.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GroupProject.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/game-test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/game-test.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +28,8 @@
       <file leaf-file-name="game.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="16" column="93" selection-start-line="16" selection-start-column="93" selection-end-line="16" selection-end-column="93" />
+            <state relative-caret-position="459">
+              <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
               <folding>
                 <element signature="e#57#74#0" expanded="true" />
               </folding>
@@ -87,11 +82,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="75" />
-    <option name="y" value="-20" />
-    <option name="width" value="2715" />
-    <option name="height" value="2175" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1713" />
+    <option name="width" value="1734" />
+    <option name="height" value="1447" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -169,19 +163,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7130000" />
+    <option name="totallyTimeSpent" value="7628000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1549" height="877" extended-state="6" />
+    <frame x="3126" y="268" width="2715" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17436565" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09929603" />
       <window_info anchor="bottom" id="TODO" order="9" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.32901555" />
       <window_info anchor="bottom" id="CMake" order="19" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32901555" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.19083396" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -353,8 +347,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="93" selection-start-line="16" selection-start-column="93" selection-end-line="16" selection-end-column="93" />
+        <state relative-caret-position="459">
+          <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
           <folding>
             <element signature="e#57#74#0" expanded="true" />
           </folding>
