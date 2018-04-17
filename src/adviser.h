@@ -10,30 +10,28 @@
 using namespace std;
 
 /*
-
- 
-
-*/
+ *
+ * */
 
 class Adviser
 {
-    string name;
-    int fee;
-    
+    string name; // a string value that represents the name of the adviser
+
+    unsigned double fee; // a double value that represents the daily fee charged by the adviser
+
+    unsigned int accuracy; // an int value (1 - 10) that represents the acurracy of the adviser's predictions
 
 public:
+
     Adviser(string name);
 
-    int getFee();
+    double getFee(); // returns a value representing the daily fee charge by the adviser
 
-    int setFee();
+    void generateFee(); // generates a value representing the daily fee charged by the adviser
 
-    void loadAdvice();
+    void generateAccuracy(); // generates a value (1 - 10) representing the accuracy of an adviser's predictions
 
-    string getAdvice();
-
-
-
+    string generateAdvice(); // generates advice on asset movements for the current day
 };
 
 #endif //GROUPPROJECT_ADVISOR_H
