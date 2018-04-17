@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -32,7 +33,7 @@ class Asset
 	public:
 		Asset(string);
 		string getAssetName();
-		int getDayData(int dayNumber);
+		double getDayData(int);
 		
 };
 

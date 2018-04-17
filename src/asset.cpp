@@ -7,7 +7,8 @@
 
 Asset::Asset(string name)
 {
-	fileName = "stock_data.txt";
+	string line;
+	fileName = "GroupProject/Data/stock_price_data.txt";
 	inFile.open(fileName, ios::in);
 	
 	if(!inFile)
