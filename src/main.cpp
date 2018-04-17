@@ -8,11 +8,6 @@ int main()
 }
 
 
-
-
-
-
-
 InstrumentData::InstrumentData(string name)
 {
 	inFile.open(name, ios::in);
@@ -21,8 +16,6 @@ InstrumentData::InstrumentData(string name)
 	{
 		cerr << "\nThe file could not be opened.\n";
 	}
-	
-	
 	
 	while(getline(inFile,line))
 	{
@@ -40,6 +33,6 @@ InstrumentData::InstrumentData(string name)
 		if(data[0] == name)
 			break;
 	}
-	
-	
+
+	data.erase(data.begin()); // The first element of the vector before the erase is the symbol name
 }

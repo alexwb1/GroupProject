@@ -1,3 +1,7 @@
+#ifndef GROUPPROJECT_ASSET_H
+#define GROUPPROJECT_ASSET_H
+
+
 #include <vector>
 #include <string>
 #include <stdio.h>
@@ -18,7 +22,7 @@ it is in the "stock_data.txt" data file and read that data into the "data" vecto
 
 class Asset
 {
-	vector<int> data; // vector to hold each days' data. 
+	vector<string> data; // vector to hold each days' data. 
 	string symbol;    // string to hold the symbol of the stock
 	string fileName;  // string to hold the name of the file that the data is being access from
 	ifstream inFile;  // file object
@@ -31,3 +35,8 @@ class Asset
 		int getDayData(int dayNumber);
 		
 };
+
+
+
+
+#endif
