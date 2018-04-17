@@ -1,0 +1,4 @@
+ToolSet: 2.10.0@C:\Users\imnie\.CLion2017.3\Cygwin
+Options: 
+
+Options:
