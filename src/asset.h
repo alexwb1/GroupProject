@@ -16,7 +16,7 @@ it is in the "stock_data.txt" data file and read that data into the "data" vecto
 
 */
 
-class InstrumentData
+class Asset
 {
 	vector<int> data; // vector to hold each days' data. 
 	string symbol;    // string to hold the symbol of the stock
@@ -26,7 +26,7 @@ class InstrumentData
 	
 	
 	public:
-		StockData(string);
+		Asset(string);
 		string getSymbol();
 		int getDayData(int dayNumber);
 		
