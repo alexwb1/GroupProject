@@ -15,24 +15,19 @@ using namespace std;
 
 class Adviser
 {
-    string name; // a string value that represents the name of the adviser
-
-    unsigned double fee; // a double value that represents the daily fee charged by the adviser
-
-    unsigned int accuracy; // an int value (0 - 1) that represents the acurracy of the adviser's predictions
+    string name; //adviser's name
+    //unsigned double fee; //daily adviser fee
+    unsigned int accuracy; // acurracy of the adviser's predictions (value is 0-1)
 	
 private:
 
-	void generateAccuracy(); // generates a value (0 - 1) representing the accuracy of an adviser's predictions
-	
-	void generateFee(); // generates a value representing the daily fee charged by the adviser
+	void generateAccuracy(); // generates adviser's predictions (value is 0-1)
+	void generateFee(); // generates daily adviser fee
 
 public:
 
     Adviser(string name);
-
-    double getFee(); // returns a value representing the daily fee charge by the adviser
-
+    double getFee(); // returns daily adviser fee
     string generateAdvice(); // generates advice on asset movements for the current day
 };
 

@@ -1,5 +1,7 @@
 #include <iostream>
-#include <game.h>
+#include <cstring>
+#include "game.h"
+
 
 void promptBrokerage()
 {
@@ -17,10 +19,13 @@ void promptAssets()
 }
 
 
-
 int main()
 {
-
+	
+	
+	std::cout << "test run" << std::endl;
+	getchar();
+	return 0;
 }
 
 

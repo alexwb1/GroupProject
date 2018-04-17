@@ -16,13 +16,6 @@ void Adviser::generateFee()
 
 
 
-
-
-
-
-
-
-
 Adviser::Adviser(string name)
 {
 	this->name = name;
