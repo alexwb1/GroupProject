@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/adviser.h
+vector
+-
+string
+-
+stdio.h
+-
+iostream
+-
+fstream
+-
+
 /cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/asset.h
 vector
 -
@@ -20,11 +32,25 @@ fstream
 sstream
 -
 
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/brokerage.h
+adviser.h
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/adviser.h
+
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/game.h
+vector
+-
+adviser.h
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/adviser.h
+asset.h
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/asset.h
+brokerage.h
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/brokerage.h
+
 /cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/main.cpp
 iostream
 -
-vector
+cstring
 -
-asset.h
-/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/asset.h
+game.h
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/game.h
 

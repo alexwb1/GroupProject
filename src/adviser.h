@@ -16,8 +16,8 @@ using namespace std;
 class Adviser
 {
     string name; //adviser's name
-    //unsigned double fee; //daily adviser fee
-    unsigned int accuracy; // acurracy of the adviser's predictions (value is 0-1)
+    double fee; //daily adviser fee
+    unsigned int accuracy; // accuracy of the adviser's predictions (value is 0-1)
 	
 private:
 

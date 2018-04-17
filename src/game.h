@@ -8,9 +8,9 @@
 
 class Game {
 
-    //vector<Brokerage> brokerages;
-    //vector<Asset> assets;
-    //vector<Adviser> advisers; // a list of advisers
+    vector<Brokerage> brokerages;
+    vector<Asset> assets;
+    vector<Adviser> advisers; // a list of advisers
 
     unsigned int day;
 
