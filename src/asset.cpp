@@ -3,11 +3,12 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
-
+#include "asset.h"
 
 Asset::Asset(string name)
 {
-	inFile.open(name, ios::in);
+	fileName = "stock_data.txt";
+	inFile.open(fileName, ios::in);
 	
 	if(!inFile)
 	{
