@@ -23,7 +23,8 @@ private:
 
 	void generateAccuracy(); // generates adviser's predictions (value is 0-1)
 	void generateFee(); // generates daily adviser fee
-
+	int generateSentiment(int, int)
+	
 public:
 
     Adviser(string name);
