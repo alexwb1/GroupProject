@@ -28,7 +28,7 @@ There will be outputs associated with each of the user’s inputs. When the user
 
 ## Deadlines
 
-04/06/18 - Finish the first module
-04/15/18 - Finish the second module
-04/20/18 - Finish integration and testing
-04/23/18 - Project due
+- 04/06/18 - Finish the first module
+- 04/15/18 - Finish the second module
+- 04/20/18 - Finish integration and testing
+- 04/23/18 - Project due
