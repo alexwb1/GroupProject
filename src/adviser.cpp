@@ -36,8 +36,25 @@ int generateSentiment(double curr, double next)
 	double change = (next-curr)/curr;
 	
 	
+	int initSent = 0;
+	
+	if(change >= -.005 && change <= .005)
+		initSent = 3;
+	else if(change > .005 && change <= 0.0125)
+		initSent = 4;
+	else if(change > 0.0125)
+		initSent = 5;
+	else if(change < -.005 && change >= -.0125)
+		initSent = 2;
+	else if(change < -.0125)
+		initSent = 1;
+	else
+		initSent = 3;
 	
 	
+	
+	// Now initSent is the CORRECT sentiment for the the change in the price
+	// Now initSent will be CHANGED according to the advisers accuracy.
 	
 }
 
