@@ -2,11 +2,9 @@
 #include <vector>
 #include "asset.h"
 
-int main(){
-
-
-
-return 0;
+int main()
+{
+	return 0;
 }
 
 
@@ -34,9 +32,14 @@ InstrumentData::InstrumentData(string name)
 		
 		while(getline(check1, inter, ','))
 		{
-			tokens.push_back(inter);
+			data.push_back(inter);
 			cout << inter << endl;
 		}
+		
+		
+		if(data[0] == name)
+			break;
 	}
+	
 	
 }
