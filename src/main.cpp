@@ -8,7 +8,7 @@ int main()
 }
 
 
-InstrumentData::InstrumentData(string name)
+Asset::Asset(string name)
 {
 	inFile.open(name, ios::in);
 	
@@ -35,4 +35,8 @@ InstrumentData::InstrumentData(string name)
 	}
 
 	data.erase(data.begin()); // The first element of the vector before the erase is the symbol name
+}
+Asset::getAssetName()
+{
+	return assetName;
 }

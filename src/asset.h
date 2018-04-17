@@ -23,7 +23,7 @@ it is in the "stock_data.txt" data file and read that data into the "data" vecto
 class Asset
 {
 	vector<string> data; // vector to hold each days' data. 
-	string symbol;    // string to hold the symbol of the stock
+	string assetName;    // string to hold the symbol of the stock
 	string fileName;  // string to hold the name of the file that the data is being access from
 	ifstream inFile;  // file object
 	string inter;     // string used to tokenize the file lines
@@ -31,7 +31,7 @@ class Asset
 	
 	public:
 		Asset(string);
-		string getSymbol();
+		string getAssetName();
 		int getDayData(int dayNumber);
 		
 };
