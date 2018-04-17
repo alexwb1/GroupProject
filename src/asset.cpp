@@ -1,3 +1,10 @@
+#include <vector>
+#include <string>
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+
+
 Asset::Asset(string name)
 {
 	inFile.open(name, ios::in);
@@ -19,14 +26,17 @@ Asset::Asset(string name)
 			cout << inter << endl;
 		}
 		
-		
 		if(data[0] == name)
 			break;
 	}
 
 	data.erase(data.begin()); // The first element of the vector before the erase is the symbol name
 }
-Asset::getAssetName()
+string Asset::getAssetName()
 {
 	return assetName;
+}
+double Asset::getDayData(int dayNumber)
+{
+	return stod(data[dayNumber]);
 }
