@@ -9,11 +9,14 @@ class Brokerage
 
     double fee; // a double value that represents the fee per trade charged by the brokerage
 
-    vector<Adviser> advisers; // a list of advisers that are part of the brokerage
 
 public:
 
-    double getFee(); 
+    Brokerage(string name);
+
+    double getFee();
+
+private:
 
     double generateFee(); // generates a double value that represents the fee per trade charged by the brokerage
 

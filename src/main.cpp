@@ -1,11 +1,26 @@
 #include <iostream>
-#include <vector>
-#include "asset.h"
+#include <game.h>
+
+void promptBrokerage()
+{
+
+}
+
+void promptAdviser()
+{
+
+}
+
+void promptAssets()
+{
+
+}
+
+
 
 int main()
 {
-	cout << "test" << endl;
-	return 0;
+
 }
 
 
