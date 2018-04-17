@@ -30,4 +30,4 @@ class InstrumentData
 		string getSymbol();
 		int getDayData(int dayNumber);
 		
-}
+};
