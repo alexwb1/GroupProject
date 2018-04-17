@@ -1,4 +1,10 @@
-//
-// Created by imnie on 4/16/2018.
-//
 
+#include "/src/game.h>
+
+int main () {
+
+    Game game();
+    game.nextDay();
+
+    return 0;
+}
