@@ -6,7 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/imnie/CLionProjects/GroupProject/main.cpp
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/asset.h
+vector
+-
+string
+-
+stdio.h
+-
 iostream
 -
+fstream
+-
+sstream
+-
+
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/main.cpp
+iostream
+-
+vector
+-
+asset.h
+/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/asset.h
 

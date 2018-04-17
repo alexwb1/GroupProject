@@ -80,7 +80,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/c/Users/imnie/CLionProjects/GroupProject/main.cpp">
+		<Unit filename="/cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/main.cpp">
 			<Option target="GroupProject"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/imnie/CLionProjects/GroupProject/CMakeLists.txt">

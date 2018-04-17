@@ -3,4 +3,4 @@ project(GroupProject)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(GroupProject main.cpp)
+add_executable(GroupProject src/main.cpp)

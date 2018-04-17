@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/GroupProject.dir/main.cpp.o"
+  "CMakeFiles/GroupProject.dir/src/main.cpp.o"
   "GroupProject.pdb"
   "GroupProject.exe"
   "libGroupProject.dll.a"
