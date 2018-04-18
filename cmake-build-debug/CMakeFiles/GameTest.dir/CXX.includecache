@@ -7,15 +7,7 @@
 #IncludeRegexTransform: 
 
 /cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/adviser.h
-vector
--
 string
--
-stdio.h
--
-iostream
--
-fstream
 -
 
 /cygdrive/c/Users/imnie/CLionProjects/GroupProject/src/asset.h
