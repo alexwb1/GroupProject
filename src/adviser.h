@@ -16,7 +16,7 @@ public:
 
 	double getFee(); // returns daily adviser fee
 
-	std::string generateAdvice(); // generates advice on asset movements for the current day
+	std::string getAdvice(); // generates advice on asset movements for the current day
 
 private:
 
@@ -54,7 +54,7 @@ double Adviser::generateAccuracy(int fee)
 	accuracy = ((double) rand() / (RAND_MAX));
 }
 
-std::string Adviser::generateAdvice() {
+std::string Adviser::getAdvice() {
 	return std::string();
 }
 

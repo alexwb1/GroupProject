@@ -278,7 +278,7 @@ std::vector<Asset> Game::loadAssets(const std::string &filename)
 }
 // TODO: implement advice from adviser
 std::string Game::getAdvice() {
-    return std::string();
+    return adviser->generateAdvice();
 }
 
 std::vector<Brokerage> Game::getBrokerages() {
