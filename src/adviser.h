@@ -7,7 +7,14 @@ class Adviser
 	std::string name; // string representing the adviser's name
     int fee; // int representing the adviser's weekly fee
     double accuracy; // double representing accuracy of the adviser's predictions; value in range [0 - 1]
-
+	
+	//here are the sentiment diaglogues
+	vector<string> sentiment1Dialogue{"I fear the worst!","The market is going to crash!","SELL SELL SELL!","IT'S A MOTHERF*CKING BEAR!","SELL ALL THE STOCKS!"};
+	vector<string> sentiment2Dialogue{"I smell a bear.","I advise you to sell.","Investor confidence is at a low.","Prices are going to drop","Short the market!"};
+	vector<string> sentiment3Dialogue{"I am predicting little to no change.","Volitility is low.","I forsee no change in price.","The price will remain stable.","The market is boring me."};
+	vector<string> sentiment4Dialogue{"Don't hold your cash on the sidelines!","I advise you to buy.","Prices are going to rise.","Hold the market!","Investor confidence is rising!"};
+	vector<string> sentiment5Dialogue{"BUY BUY BUY!","Prices are going to skyrocket!","Put all your money in!","HERE COMES A BIG PAYDAY!","BUY ALL THE STOCKS!"};
+	
 public:
 
     explicit Adviser(std::string name);
