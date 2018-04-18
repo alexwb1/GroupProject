@@ -57,7 +57,7 @@ public:
 
     std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
 
-    std::string getAdvice(); // returns a string representing advice from the adviser
+    std::string getAdvice(Asset, int); // returns a string representing advice from the adviser
 
 private:
 
@@ -276,8 +276,8 @@ std::vector<Asset> Game::loadAssets(const std::string &filename)
     return a;
 }
 
-std::string Game::getAdvice() {
-    return adviser->getAdvice();
+std::string Game::getAdvice(Asset asset, int weekNum) {
+    return adviser->getAdvice(asset, weekNum);
 }
 
 std::vector<Brokerage> Game::getBrokerages() {

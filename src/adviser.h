@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include "asset.h"
 
 class Adviser
 {
@@ -9,13 +11,13 @@ class Adviser
     double accuracy; // double representing accuracy of the adviser's predictions; value in range [0 - 1]
 	
 	//here are the sentiment diaglogues // this is kind of shitty coding but lol
-	vector<string> sentiment1Dialogue{"I fear the worst!","The market is going to crash!","SELL SELL SELL!","IT'S A MOTHERF*CKING BEAR!","SELL ALL THE STOCKS!"};
-	vector<string> sentiment2Dialogue{"I smell a bear.","I advise you to sell.","Investor confidence is at a low.","Prices are going to drop","Short the market!"};
-	vector<string> sentiment3Dialogue{"I am predicting little to no change.","Volitility is low.","I forsee no change in price.","The price will remain stable.","The market is boring me."};
-	vector<string> sentiment4Dialogue{"Don't hold your cash on the sidelines!","I advise you to buy.","Prices are going to rise.","Hold the market!","Investor confidence is rising!"};
-	vector<string> sentiment5Dialogue{"BUY BUY BUY!","Prices are going to skyrocket!","Put all your money in!","HERE COMES A BIG PAYDAY!","BUY ALL THE STOCKS!"};
+	std::vector<std::string> sentiment1Dialogue{"I fear the worst!","The market is going to crash!","SELL SELL SELL!","IT'S A MOTHERF*CKING BEAR!","SELL ALL THE STOCKS!"};
+	std::vector<std::string> sentiment2Dialogue{"I smell a bear.","I advise you to sell.","Investor confidence is at a low.","Prices are going to drop","Short the market!"};
+	std::vector<std::string> sentiment3Dialogue{"I am predicting little to no change.","Volitility is low.","I forsee no change in price.","The price will remain stable.","The market is boring me."};
+	std::vector<std::string> sentiment4Dialogue{"Don't hold your cash on the sidelines!","I advise you to buy.","Prices are going to rise.","Hold the market!","Investor confidence is rising!"};
+	std::vector<std::string> sentiment5Dialogue{"BUY BUY BUY!","Prices are going to skyrocket!","Put all your money in!","HERE COMES A BIG PAYDAY!","BUY ALL THE STOCKS!"};
 	
-	vector<vector<string>> sentimentDialogue = {sentiment1Dialogue,sentiment2Dialogue,sentiment3Dialogue,sentiment4Dialogue,sentiment5Dialogue};
+	std::vector<std::vector<std::string>> sentimentDialogue = {sentiment1Dialogue,sentiment2Dialogue,sentiment3Dialogue,sentiment4Dialogue,sentiment5Dialogue};
 	
 public:
 
@@ -65,7 +67,7 @@ double Adviser::generateAccuracy(int fee)
 
 std::string Adviser::getAdvice(Asset asset, int weekNum) {
 	
-	int sentiment = generateSentiment(asset, int weekNum);
+	int sentiment = generateSentiment(asset, weekNum);
 	
 	return sentimentDialogue[sentiment][rand()%5];
 	
@@ -112,7 +114,7 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 	{
 		//sentiment changes by 3
 		if(initSent == 4 || initSent == 5)
-			return initSent-3
+			return initSent-3;
 		else if(initSent == 3)
 			return 1;
 		else if(initSent == 2 || initSent == 1)
@@ -122,7 +124,7 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 	{
 		//sentiment changes by 2
 		if(initSent == 5 || initSent == 4)
-			return iniSent-2;
+			return initSent-2;
 		else if(initSent == 1 || initSent == 2)
 			return initSent+2;
 		else
@@ -130,7 +132,7 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 			if(((double) rand() / (RAND_MAX)) > 0.5)
 				return initSent+2;
 			else
-				return initSent-2
+				return initSent-2;
 		}
 	}
 	else if(((double) rand() / (RAND_MAX)) < (1-accuracy))
