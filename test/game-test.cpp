@@ -4,8 +4,9 @@
 
 int main () {
 
-    Game *game = new Game(1, "Bob");
-    game->nextWeek();
+    Game game(1, "Bob");
+    game.nextWeek();
+
 
     return 0;
 }

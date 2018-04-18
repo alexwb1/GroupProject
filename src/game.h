@@ -27,23 +27,23 @@ public:
 
     bool nextWeek(); // increments the week by 1
 
-    string getName(); //
+    string getName(); // returns a string value representing the user's name
 
-    int getCapital(); // returns an int value representing
+    int getCapital(); // returns an int value representing the capital that a user does not have invested
 
-    void setCapital(int capital);
+    void setCapital(int capital); // sets the capital member variable to a specified value
 
-    Brokerage* getBrokerage();
+    Brokerage* getBrokerage(); // returns a pointer to the user-chosen brokerage
 
-    void setBrokerage(string name);
+    void setBrokerage(string name); // sets the user-chosen brokerage
 
-    Adviser* getAdviser();
+    Adviser* getAdviser(); // returns a pointer to the user-chosen adviser
 
-    void setAdviser(string name);
+    void setAdviser(string name); // sets the user-chosen adviser
 
-    bool buyAsset(string name);
+    bool buyAsset(string name); // adds an asset to the user's portfolio and substracts the price from the user's capital; returns true if this action can be taken, false if not
 
-    bool sellAsset(string name);
+    bool sellAsset(string name); // removes an asset from the user's portfolio and adds the price to the user's capital; returns true if this action can be taken, false if not
 };
 
 #endif //GROUPPROJECT_GAME_H
