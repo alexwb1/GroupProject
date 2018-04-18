@@ -7,21 +7,28 @@ class Asset
 {
 	std::vector<int> prices; // vector to hold each day's price
 
+    std::vector<int> purchases; // a vector containing the purchase history of this asset
+
 	std::string ticker; // string to hold the symbol of the stock
 
-	int quantity = 0; // int value representing how many shares are owned
+	unsigned int quantity = 0; // int value representing how many shares are owned
 
 	public:
 
 		Asset(std::string ticker, std::vector<int> prices);
 
-		int getPriceAtWeek(int week);
+		int getPriceAtWeek(unsigned int week);
 
         std::string getTicker();
 
-		int getQuantity();
+		unsigned int getQuantity();
 
-		void setQuantity(int quantity);
+		int buy(unsigned int quantity, unsigned int purchaseWeek);
+
+		int sell(unsigned int quantity, unsigned int purchaseWeek);
+
+		std::vector<int> getPurchases();
+
 };
 
 // Definition of Asset methods
@@ -29,20 +36,35 @@ class Asset
 Asset::Asset(std::string ticker, std::vector<int> prices) {
     this->ticker = ticker;
     this->prices = prices;
+    for (int i = 0; i < prices.size(); i++) {
+        purchases.push_back(0);
+    }
 }
 
-int Asset::getPriceAtWeek(int week) {
-    return prices[week - 1];
+int Asset::getPriceAtWeek(unsigned int week) {
+    return prices[week];
 }
 
 std::string Asset::getTicker() {
     return ticker;
 }
 
-int Asset::getQuantity() {
+unsigned int Asset::getQuantity() {
     return quantity;
 }
 
-void Asset::setQuantity(int quantity) {
-    this->quantity = quantity;
+int Asset::buy(unsigned int quantity, unsigned int purchaseWeek) {
+    this->quantity = this->quantity + quantity;
+    purchases[purchaseWeek] = purchases[purchaseWeek] + quantity;
+    return quantity * prices[purchaseWeek];
+}
+
+int Asset::sell(unsigned int quantity, unsigned int purchaseWeek) {
+    this->quantity = this->quantity - quantity;
+    purchases[purchaseWeek] = purchases[purchaseWeek] - quantity;
+    return quantity * prices[purchaseWeek];
+}
+
+std::vector<int> Asset::getPurchases() {
+    return purchases;
 }

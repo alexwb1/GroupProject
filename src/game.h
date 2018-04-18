@@ -19,26 +19,26 @@ class Game
 
     std::string name; // name of the user
     int capital; // current amount of capital that a user does not have invested
-    unsigned int week = 1; // unsigned integer value that represents the current week
-    const int FINAL_WEEK = 27; // constant int value that represents the last week of available data
+    unsigned int week = 0; // unsigned integer value that represents the current week
+    const int FINAL_WEEK = 26; // constant int value that represents the last week of available data
 
 public:
 
-    Game(int initialCapital, std::string name); // the Game constructor takes in an initial capital value and a player name
-
-    std::vector<Brokerage> loadBrokerages(const std::string &filename);
-
-    std::vector<Adviser> loadAdvisers(const std::string &filename);
-
-    std::vector<Asset> loadAssets(const std::string &filename);
-
-    bool nextWeek(); // increments the week by 1
-
-    std::string getName(); // returns a string value representing the user's name
+    Game(int capital, std::string name); // the Game constructor takes in an initial capital value and a player name
 
     int getCapital(); // returns an int value representing the capital that a user does not have invested
 
     void setCapital(int capital); // sets the capital member variable to a specified value
+
+    std::string getName(); // returns a string value representing the user's name
+
+    bool nextWeek(); // increments the week by 1
+
+    int getWeek(); // returns the current week
+
+    int getFinalWeek(); // returns the final week of game play
+
+    std::vector<Brokerage> getBrokerages(); // returns a vector of the available brokerages
 
     Brokerage* getBrokerage(); // returns a pointer to the user-chosen brokerage
 
@@ -46,11 +46,27 @@ public:
 
     Adviser* getAdviser(); // returns a pointer to the user-chosen adviser
 
+    std::vector<Adviser> getAdvisers(); // returns a list of the available advisers
+
     bool setAdviser(const std::string &name); // sets the user-chosen adviser
 
-    bool buyAsset(const std::string &name, int quantity); // adds an asset to the user's portfolio and substracts the price from the user's capital; returns true if this action can be taken, false if not
+    std::vector<Asset> getAssets(); // returns a list of the available assets
 
-    bool sellAsset(const std::string &name, int quantity); // removes an asset from the user's portfolio and adds the price to the user's capital; returns true if this action can be taken, false if not
+    bool buyAsset(const std::string &name, unsigned int quantity); // adds an asset to the user's portfolio and substracts the price from the user's capital; returns true if this action can be taken, false if not
+
+    bool sellAsset(const std::string &name, unsigned int quantity); // removes an asset from the user's portfolio and adds the price to the user's capital; returns true if this action can be taken, false if not
+
+    std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
+
+    std::string getAdvice(); // returns a string representing advice from the adviser
+
+private:
+
+    std::vector<Brokerage> loadBrokerages(const std::string &filename);
+
+    std::vector<Adviser> loadAdvisers(const std::string &filename);
+
+    std::vector<Asset> loadAssets(const std::string &filename);
 };
 
 // Definition of Game methods
@@ -62,6 +78,124 @@ Game::Game(int initialCapital, std::string name)
     this->brokerages = loadBrokerages("../data/brokerages.txt");
     this->advisers = loadAdvisers("../data/advisers.txt");
     this->assets = loadAssets("../data/assets.txt");
+}
+
+bool Game::nextWeek()
+{
+    if (week < FINAL_WEEK) {
+        week++;
+        capital -= adviser->getFee();
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+int Game::getWeek() {
+    return week;
+}
+
+int Game::getFinalWeek() {
+    return FINAL_WEEK;
+}
+
+std::string Game::getName()
+{
+    return name;
+}
+
+int Game::getCapital()
+{
+    return capital;
+}
+
+void Game::setCapital(int capital)
+{
+    this->capital = capital;
+}
+
+Brokerage* Game::getBrokerage()
+{
+    return brokerage;
+}
+
+bool Game::setBrokerage(const std::string &name)
+{
+    for (int i = 0; i < brokerages.size(); i++)
+    {
+        if (brokerages[i].getName() == name)
+        {
+            brokerage = &brokerages[i];
+            return true;
+        }
+    }
+    return false;
+}
+
+Adviser *Game::getAdviser()
+{
+    return adviser;
+}
+
+bool Game::setAdviser(const std::string &name)
+{
+    for (int i = 0; i < advisers.size(); i++)
+    {
+        if (advisers[i].getName() == name)
+        {
+            adviser = &advisers[i];
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Game::buyAsset(const std::string &name, unsigned int quantity)
+{
+    for (int i = 0; i < assets.size(); i++)
+    {
+        if (assets[i].getTicker() == name)
+        {
+            if (assets[i].getPriceAtWeek(week) * quantity > capital)
+            {
+                return false;
+            }
+            else {
+                capital -= assets[i].buy(quantity, week);
+                return true;
+            }
+        }
+    }
+}
+
+bool Game::sellAsset(const std::string &name, unsigned int quantity)
+{
+    for (auto &a : assets) {
+        if (a.getTicker() == name)
+        {
+            if (quantity > a.getQuantity())
+            {
+                return false;
+            }
+            else {
+                capital += a.sell(quantity, week);
+                return true;
+            }
+        }
+    }
+}
+
+std::vector<Asset> Game::getPortfolio() {
+    std::vector<Asset> portfolio;
+    for (auto &a : assets)
+    {
+        if (a.getQuantity() != 0)
+        {
+            portfolio.push_back(a);
+        }
+    }
+    return portfolio;
 }
 
 std::vector<Brokerage> Game::loadBrokerages(const std::string &filename)
@@ -142,100 +276,19 @@ std::vector<Asset> Game::loadAssets(const std::string &filename)
 
     return a;
 }
-
-bool Game::nextWeek()
-{
-    if (week < FINAL_WEEK) {
-        week++;
-        return true;
-    }
-    else {
-        return false;
-    }
+// TODO: implement advice from adviser
+std::string Game::getAdvice() {
+    return std::string();
 }
 
-std::string Game::getName()
-{
-    return name;
+std::vector<Brokerage> Game::getBrokerages() {
+    return brokerages;
 }
 
-int Game::getCapital()
-{
-    return capital;
+std::vector<Adviser> Game::getAdvisers() {
+    return advisers;
 }
 
-void Game::setCapital(int capital)
-{
-    this->capital = capital;
-}
-
-Brokerage* Game::getBrokerage()
-{
-    return brokerage;
-}
-
-bool Game::setBrokerage(const std::string &name)
-{
-    for (auto &b : brokerages)
-    {
-        if (b.getName() == name)
-        {
-            brokerage = &b;
-            return true;
-        }
-    }
-    return false;
-}
-
-Adviser *Game::getAdviser()
-{
-    return adviser;
-}
-
-bool Game::setAdviser(const std::string &name)
-{
-    for (auto &a : advisers)
-    {
-        if (a.getName() == name)
-        {
-            adviser = &a;
-            return true;
-        }
-    }
-    return false;
-}
-
-bool Game::buyAsset(const std::string &name, int quantity)
-{
-    for (auto &a : assets)
-    {
-        if (a.getTicker() == name)
-        {
-            if (a.getPriceAtWeek(week) * quantity > capital)
-            {
-                return false;
-            }
-            else {
-                a.setQuantity(a.getQuantity() + quantity);
-                return true;
-            }
-        }
-    }
-}
-
-bool Game::sellAsset(const std::string &name, int quantity)
-{
-    for (auto &asset : assets) {
-        if (asset.getTicker() == name)
-        {
-            if (quantity > asset.getQuantity())
-            {
-                return false;
-            }
-            else {
-                asset.setQuantity(asset.getQuantity() - quantity);
-                return true;
-            }
-        }
-    }
+std::vector<Asset> Game::getAssets() {
+    return assets;
 }

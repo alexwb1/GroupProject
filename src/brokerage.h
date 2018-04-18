@@ -6,12 +6,12 @@ class Brokerage
 {
     std::string name; // a string value that represents the name of the brokerage
 
-    double fee{}; // a double value that represents the fee per trade charged by the brokerage
+    int fee; // a double value that represents the fee per trade charged by the brokerage
 
 
 public:
 
-    explicit Brokerage(std::string name);
+    Brokerage(std::string name);
 
     std::string getName();
 
