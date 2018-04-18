@@ -16,19 +16,19 @@ bool Game::nextWeek() {
 }
 
 string Game::getName() {
-    return std::string();
+    return name;
 }
 
 int Game::getCapital() {
-    return 0;
+    return capital;
 }
 
 void Game::setCapital(int capital) {
-
+    this->capital = capital;
 }
 
-Brokerage *Game::getBrokerage() {
-    return nullptr;
+Brokerage* Game::getBrokerage() {
+    return brokerage;
 }
 
 void Game::setBrokerage(string name) {
@@ -36,7 +36,7 @@ void Game::setBrokerage(string name) {
 }
 
 Adviser *Game::getAdviser() {
-    return nullptr;
+    return adviser;
 }
 
 void Game::setAdviser(string name) {
