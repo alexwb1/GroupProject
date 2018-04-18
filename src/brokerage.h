@@ -1,18 +1,19 @@
-#ifndef GROUPPROJECT_BROKERAGE_H
-#define GROUPPROJECT_BROKERAGE_H
+#pragma once
 
-#include "adviser.h"
+#include <string>
 
 class Brokerage
 {
-    string name; // a string value that represents the name of the brokerage
+    std::string name; // a string value that represents the name of the brokerage
 
-    double fee; // a double value that represents the fee per trade charged by the brokerage
+    double fee{}; // a double value that represents the fee per trade charged by the brokerage
 
 
 public:
 
-    Brokerage(string name);
+    explicit Brokerage(std::string name);
+
+    std::string getName();
 
     double getFee();
 
@@ -22,4 +23,20 @@ private:
 
 };
 
-#endif //GROUPPROJECT_BROKERAGE_H
+// Definition of Brokerage methods
+
+Brokerage::Brokerage(std::string name) {
+    this->name = name;
+}
+
+std::string Brokerage::getName() {
+    return name;
+}
+
+double Brokerage::getFee() {
+    return 0;
+}
+
+double Brokerage::generateFee() {
+    return 0;
+}

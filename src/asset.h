@@ -1,44 +1,48 @@
-#ifndef GROUPPROJECT_ASSET_H
-#define GROUPPROJECT_ASSET_H
+#pragma once
 
-
-#include <vector>
 #include <string>
-#include <stdio.h>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
-using namespace std;
-
-/*
-
-This class will hold an object for each financial instrument. The data will be
-stored in a vector. Each index of the vector represents one day of closing price.
-
-The constructor of the class will take in the symbol or name of the instrument as
-it is in the "stock_price_data.txt" data file and read that data into the "data" vector.
-
-*/
+#include <vector>
 
 class Asset
 {
-	vector<int> prices; // vector to hold each day's price
+	std::vector<int> prices; // vector to hold each day's price
 
-	string ticker; // string to hold the symbol of the stock
+	std::string ticker; // string to hold the symbol of the stock
 
-	int quantity = 0;
+	int quantity = 0; // int value representing how many shares are owned
 
 	public:
 
-		Asset(string ticker, vector<int> data);
-
-		string getTicker();
+		Asset(std::string ticker, std::vector<int> prices);
 
 		int getPriceAtWeek(int week);
+
+        std::string getTicker();
+
+		int getQuantity();
+
+		void setQuantity(int quantity);
 };
 
+// Definition of Asset methods
 
+Asset::Asset(std::string ticker, std::vector<int> prices) {
+    this->ticker = ticker;
+    this->prices = prices;
+}
 
+int Asset::getPriceAtWeek(int week) {
+    return prices[week - 1];
+}
 
-#endif
+std::string Asset::getTicker() {
+    return ticker;
+}
+
+int Asset::getQuantity() {
+    return quantity;
+}
+
+void Asset::setQuantity(int quantity) {
+    this->quantity = quantity;
+}
