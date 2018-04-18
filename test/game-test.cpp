@@ -1,10 +1,11 @@
-
-#include "/src/game.h>
+#include "../src/game.h"
+#include "../src/game.cpp"
+#include <string>
 
 int main () {
 
-    Game game();
-    game.nextDay();
+    Game *game = new Game(1, "Bob");
+    game->nextWeek();
 
     return 0;
 }

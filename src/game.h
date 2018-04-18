@@ -18,21 +18,32 @@ class Game {
 
     string name; // name of the user
     int capital; // current amount of capital that a user does not have invested
-    unsigned int week; // unsigned integer value that represents the current week
+    unsigned int week = 1; // unsigned integer value that represents the current week
     const int FINAL_WEEK = 27; // constant int value that represents the last week of available data
 
 public:
 
-    Game(int initialCapital, string name); // the Game constructor which
+    Game(int capital, string name); // the Game constructor takes in an initial capital value and
 
     bool nextWeek(); // increments the week by 1
 
+    string getName(); //
 
+    int getCapital(); // returns an int value representing
 
+    void setCapital(int capital);
 
+    Brokerage* getBrokerage();
 
+    void setBrokerage(string name);
 
+    Adviser* getAdviser();
 
+    void setAdviser(string name);
+
+    bool buyAsset(string name);
+
+    bool sellAsset(string name);
 };
 
 #endif //GROUPPROJECT_GAME_H

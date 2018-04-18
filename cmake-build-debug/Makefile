@@ -123,6 +123,19 @@ GroupProject/fast:
 	$(MAKE) -f CMakeFiles/GroupProject.dir/build.make CMakeFiles/GroupProject.dir/build
 .PHONY : GroupProject/fast
 
+#=============================================================================
+# Target rules for targets named GameTest
+
+# Build rule for target.
+GameTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GameTest
+.PHONY : GameTest
+
+# fast build rule for target.
+GameTest/fast:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/build
+.PHONY : GameTest/fast
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -150,6 +163,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/GroupProject.dir/build.make CMakeFiles/GroupProject.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+test/game-test.o: test/game-test.cpp.o
+
+.PHONY : test/game-test.o
+
+# target to build an object file
+test/game-test.cpp.o:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/test/game-test.cpp.o
+.PHONY : test/game-test.cpp.o
+
+test/game-test.i: test/game-test.cpp.i
+
+.PHONY : test/game-test.i
+
+# target to preprocess a source file
+test/game-test.cpp.i:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/test/game-test.cpp.i
+.PHONY : test/game-test.cpp.i
+
+test/game-test.s: test/game-test.cpp.s
+
+.PHONY : test/game-test.s
+
+# target to generate assembly for a file
+test/game-test.cpp.s:
+	$(MAKE) -f CMakeFiles/GameTest.dir/build.make CMakeFiles/GameTest.dir/test/game-test.cpp.s
+.PHONY : test/game-test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +199,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... GroupProject"
+	@echo "... GameTest"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... test/game-test.o"
+	@echo "... test/game-test.i"
+	@echo "... test/game-test.s"
 .PHONY : help
 
 

@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/GameTest.dir/test/game-test.cpp.o  -o GameTest.exe -Wl,--out-implib,libGameTest.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
