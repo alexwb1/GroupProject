@@ -27,12 +27,13 @@ private:
 
 Brokerage::Brokerage(std::string name) {
     this->name = name;
+    this->fee = generateFee();
 }
 
 std::string Brokerage::getName() {
     return name;
 }
-
+// TODO: get bigAL code
 double Brokerage::getFee() {
     return 0;
 }
