@@ -157,9 +157,5 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 		return initSent;
 		
 	}
-	
-	
-	
-	
 }
 
