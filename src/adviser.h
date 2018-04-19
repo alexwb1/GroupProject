@@ -44,7 +44,7 @@ Adviser::Adviser(std::string name)
 {
     this->name = name;
     generateFee();
-    this->accuracy = generateAccuracy(this->fee);
+    generateAccuracy(this->fee);
 }
 
 std::string Adviser::getName() {
@@ -68,6 +68,11 @@ void Adviser::generateFee()
 double Adviser::generateAccuracy(int fee)
 {
 	accuracy = ((double) rand() / (RAND_MAX));
+	
+	if(fee > 0.05)
+		accuracy = accuracy + 0.02;
+	else
+		accuracy = accuracy - 0.01;
 }
 
 std::string Adviser::getAdvice(Asset asset, int weekNum) {
