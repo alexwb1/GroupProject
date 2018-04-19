@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <iterator>
 #include "brokerage.h"
 #include "adviser.h"
 #include "asset.h"
@@ -23,38 +24,28 @@ class Game
 
 public:
 
+    std::string getName(); // returns a string value representing the user's name
     Game(int capital, std::string name); // the Game constructor takes in an initial capital value and a player name
 
     int getCapital(); // returns an int value representing the capital that a user does not have invested
-
     void setCapital(int capital); // sets the capital member variable to a specified value
 
-    std::string getName(); // returns a string value representing the user's name
-
     bool nextWeek(); // increments the week by 1
-
     int getWeek(); // returns the current week
-
     int getFinalWeek(); // returns the final week of game play
 
     std::vector<Brokerage> getBrokerages(); // returns a vector of the available brokerages
-
     Brokerage* getBrokerage(); // returns a pointer to the user-chosen brokerage
-
     bool setBrokerage(const std::string &name); // sets the user-chosen brokerage
+    void printBrokerages(std::vector <Brokerage> v);
 
     Adviser* getAdviser(); // returns a pointer to the user-chosen adviser
-
     std::vector<Adviser> getAdvisers(); // returns a list of the available advisers
-
     bool setAdviser(const std::string &name); // sets the user-chosen adviser
 
     std::vector<Asset> getAssets(); // returns a list of the available assets
-
     bool buyAsset(const std::string &name, unsigned int quantity); // adds an asset to the user's portfolio and substracts the price from the user's capital; returns true if this action can be taken, false if not
-
     bool sellAsset(const std::string &name, unsigned int quantity); // removes an asset from the user's portfolio and adds the price to the user's capital; returns true if this action can be taken, false if not
-
     std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
 
     std::string getAdvice(Asset, int); // returns a string representing advice from the adviser
@@ -62,10 +53,9 @@ public:
 private:
 
     std::vector<Brokerage> loadBrokerages(const std::string &filename);
-
     std::vector<Adviser> loadAdvisers(const std::string &filename);
-
     std::vector<Asset> loadAssets(const std::string &filename);
+
 };
 
 // Definition of Game methods
@@ -290,4 +280,12 @@ std::vector<Adviser> Game::getAdvisers() {
 
 std::vector<Asset> Game::getAssets() {
     return assets;
+}
+
+void Game::printBrokerages(std::vector <Brokerage> v){
+    std::cout << std::endl;
+    for (int i =0; i < v.size(); ++i){
+        std::cout << "Brokerage " << i << ": " << v[i].getName() << std::endl;
+    }
+    std::cout << std::endl;
 }

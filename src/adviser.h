@@ -22,19 +22,15 @@ class Adviser
 public:
 
     explicit Adviser(std::string name);
-
     std::string getName(); // returns the adviser's name
 
 	double getFee(); // returns daily adviser fee
-
 	std::string getAdvice(Asset, int); // generates advice on asset movements for the current day
 
 private:
 
     double generateAccuracy(int fee); // generates adviser's predictions (value is 0-1)
-
     void generateFee(); // generates daily adviser fee
-
     int generateSentiment(Asset, int);
 };
 
@@ -57,18 +53,13 @@ double Adviser::getFee() {
 
 void Adviser::generateFee()
 {
-    return 0;
-	
 	int intFee = rand()%10;
 	fee = intFee/100 + ((double) rand() / (RAND_MAX))/100;
-	
-	
 }
 
 double Adviser::generateAccuracy(int fee)
 {
 	accuracy = ((double) rand() / (RAND_MAX));
-	
 	if(fee > 0.05)
 		accuracy = accuracy + 0.02;
 	else
@@ -76,9 +67,7 @@ double Adviser::generateAccuracy(int fee)
 }
 
 std::string Adviser::getAdvice(Asset asset, int weekNum) {
-	
 	int sentiment = generateSentiment(asset, weekNum);
-	
 	return sentimentDialogue[sentiment][rand()%5];
 	
 }
@@ -96,28 +85,25 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 
     double change = (nextPrice - currentPrice) / currentPrice;
 
-
     int initSent = 0;
 
     if(change >= -.005 && change <= .005)
-        initSent = 3;
+        initSent = 3; //neutral sentiment
     else if(change > .005 && change <= 0.0125)
-        initSent = 4;
+        initSent = 4; //good sentiment
     else if(change > 0.0125)
-        initSent = 5;
+        initSent = 5; //very good sentiment
     else if(change < -.005 && change >= -.0125)
-        initSent = 2;
+        initSent = 2; //bad sentiment
     else if(change < -.0125)
-        initSent = 1;
+        initSent = 1; //very bad sentiment
     else
-        initSent = 3;
+        initSent = 3; //neutral sentiment
 
-
-
-    // Now initSent is the CORRECT sentiment for the the change in the price
+    // Now initSent is the CORRECT sentiment for the ACTUAL change in the price
     // Now initSent will be CHANGED according to the advisers accuracy.
 	
-	// So one minus the adviser accuracay will be the propability that the advisers sentiment value changes by 1
+	// So one minus the adviser accuracy will be the probability that the advisers sentiment value changes by 1
 	// one half of one minus the adviser accuracy will be the probability that the advisers sentiment value changes by 2
 	
 	if(((double) rand() / (RAND_MAX)) < (1-accuracy)/4)
@@ -126,9 +112,9 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 		if(initSent == 4 || initSent == 5)
 			return initSent-3;
 		else if(initSent == 3)
-			return 1;
+			return 1; //very bad sentiment
 		else if(initSent == 2 || initSent == 1)
-			return 5;
+			return 5;//very good sentiment
 	}
 	else if(((double) rand() / (RAND_MAX)) < (1-accuracy)/2)
 	{
@@ -159,13 +145,11 @@ int Adviser::generateSentiment(Asset asset, int weekNum) {
 			else
 				return initSent-1;
 		}
-			
 	}
 	else
 	{
 		//sentiment doesnt change
 		return initSent;
-		
 	}
 }
 

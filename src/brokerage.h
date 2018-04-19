@@ -5,21 +5,18 @@
 class Brokerage
 {
     std::string name; // a string value that represents the name of the brokerage
-
     double fee; // a double value that represents the fee per trade charged by the brokerage
 
 
 public:
 
     Brokerage(std::string name);
-
     std::string getName();
-
     double getFee();
 
 private:
 
-    double generateFee(); // generates a double value that represents the fee per trade charged by the brokerage
+    void generateFee(); // generates a double value that represents the fee per trade charged by the brokerage
 
 };
 
@@ -40,4 +37,6 @@ double Brokerage::getFee() {
 
 void Brokerage::generateFee() {
     fee = (rand()%10)/200 + ((double) rand() / (RAND_MAX))/100;
+
 }
+
