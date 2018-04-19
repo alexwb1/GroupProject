@@ -7,7 +7,7 @@
 class Adviser
 {
 	std::string name; // string representing the adviser's name
-    int fee; // int representing the adviser's weekly fee
+    double fee; // int representing the adviser's weekly fee
     double accuracy; // double representing accuracy of the adviser's predictions; value in range [0 - 1]
 	
 	//here are the sentiment diaglogues // this is kind of shitty coding but lol
@@ -33,7 +33,7 @@ private:
 
     double generateAccuracy(int fee); // generates adviser's predictions (value is 0-1)
 
-    int generateFee(); // generates daily adviser fee
+    void generateFee(); // generates daily adviser fee
 
     int generateSentiment(Asset, int);
 };
@@ -43,7 +43,7 @@ private:
 Adviser::Adviser(std::string name)
 {
     this->name = name;
-    this->fee = generateFee();
+    generateFee();
     this->accuracy = generateAccuracy(this->fee);
 }
 
@@ -55,9 +55,14 @@ double Adviser::getFee() {
     return fee;
 }
 
-int Adviser::generateFee()
+void Adviser::generateFee()
 {
     return 0;
+	
+	int intFee = rand()%10;
+	fee = intFee/100 + ((double) rand() / (RAND_MAX))/100;
+	
+	
 }
 
 double Adviser::generateAccuracy(int fee)
