@@ -19,7 +19,7 @@ public:
 
 private:
 
-    double generateFee(); // generates a double value that represents the fee per trade charged by the brokerage
+    void generateFee(); // generates a double value that represents the fee per trade charged by the brokerage
 
 };
 
