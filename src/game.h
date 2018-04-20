@@ -42,6 +42,7 @@ public:
     Adviser* getAdviser(); // returns a pointer to the user-chosen adviser
     std::vector<Adviser> getAdvisers(); // returns a list of the available advisers
     bool setAdviser(const std::string &name); // sets the user-chosen adviser
+    void printAdvisers(std::vector <Adviser> v);
 
     std::vector<Asset> getAssets(); // returns a list of the available assets
     bool buyAsset(const std::string &name, unsigned int quantity); // adds an asset to the user's portfolio and substracts the price from the user's capital; returns true if this action can be taken, false if not
@@ -285,7 +286,15 @@ std::vector<Asset> Game::getAssets() {
 void Game::printBrokerages(std::vector <Brokerage> v){
     std::cout << std::endl;
     for (int i =0; i < v.size(); ++i){
-        std::cout << "Brokerage " << i << ": " << v[i].getName() << std::endl;
+        std::cout << "Brokerage " << i+1 << ": " << v[i].getName() << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+void Game::printAdvisers(std::vector <Adviser> v){
+    std::cout << std::endl;
+    for (int i =0; i < v.size(); ++i){
+        std::cout << "Adviser " << i+1 << ": " << v[i].getName() << std::endl;
     }
     std::cout << std::endl;
 }
