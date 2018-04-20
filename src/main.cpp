@@ -25,12 +25,12 @@ int main()
         return 0;
     }
     name = userName();
-    //name = "sean";
+    name = "sean";
     Game *g = new Game(10000,name);
 
-    promptBrokerage(g);
+    //promptBrokerage(g);
 
-    //promptAdviser(g); //FIXME: must change to getline() or take int input
+    //promptAdviser(g);
 
     //promptAssets();
 
@@ -66,26 +66,27 @@ void welcomeMessage(){
 }
 //User decides to play the game (or not)
 int playGame(){
-    char decision;
+    string decision;
     int playGame;
-    cout << "Would you like to learn these things? (Type 0 for NO and 1 for YES)" << endl;
-    cin >> decision;
+    cout << "Would you like to learn these things? (YES/NO)" << endl;
     while(true) {
-        if (decision == '1') {
+        cin >> decision;
+        if (decision == "YES") {
             playGame = 1;
             break;
-        } else if (decision == '0') {
+        } else if (decision == "NO") {
             playGame = 0;
             break;
         }
         else{
-            cout << "Please insert 0 to quit, or insert 1 to play" << endl;
+            cout << "Please insert NO to quit, or insert YES to play" << endl;
             continue;
         }
     }
     return playGame;
 }
 //Gets user's name for use in Game creation
+
 string userName(){
     cout << "Thanks for choosing to play Asset Management Simulator.\nLets get started.\n" << endl;
     cout << "What is your name?" << endl;
@@ -105,7 +106,7 @@ void promptBrokerage(Game *g){
     cout << "\nWhich of these brokerages would you like to use?" << endl;
     g->printBrokerages(g->getBrokerages());
     while (!chooseB){
-        cin >> brokerageName;
+        getline(cin, brokerageName);
         chooseB = g->setBrokerage(brokerageName);
         if (chooseB == false){
             cout << "\nPlease type the name of the brokerage exactly as it is displayed." << endl;
@@ -121,7 +122,7 @@ void promptAdviser(Game *g){
     cout << "\nWhich of these Advisers would you like to work with?" << endl;
     g->printAdvisers(g->getAdvisers());
     while (!chooseA){
-        cin >> adviserName;
+        getline(cin, adviserName);
         chooseA = g->setAdviser(adviserName); //FIXME: Ally Invest doesn't work
         if (chooseA == false){
             cout << "\nPlease type the name of the brokerage exactly as it is displayed." << endl;
