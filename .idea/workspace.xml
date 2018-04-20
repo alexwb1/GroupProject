@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
-    <generated>
-      <config projectName="GroupProject" targetName="GameTest" />
-      <config projectName="GroupProject" targetName="GroupProject" />
-    </generated>
+    <generated />
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
@@ -12,11 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56d8f491-838d-4875-8187-c19f16151faf" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GroupProject.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GroupProject.dir/src/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GroupProject.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GroupProject.exe" afterDir="false" />
-    </list>
+    <list default="true" id="56d8f491-838d-4875-8187-c19f16151faf" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,17 +18,29 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="87" column="43" lean-forward="true" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
+            <state relative-caret-position="459">
+              <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#1548#2091#0" />
+                <element signature="e#2137#2473#0" />
+                <element signature="e#2475#3177#0" />
+                <element signature="e#3178#3835#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="brokerage.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/brokerage.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
@@ -43,27 +48,10 @@
       <file leaf-file-name="game.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/game.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4981">
+            <state relative-caret-position="188">
               <caret line="293" column="50" selection-start-line="293" selection-start-column="50" selection-end-line="293" selection-end-column="50" />
               <folding>
                 <element signature="e#14#32#0" expanded="true" />
-                <element signature="e#3191#3365#0" />
-                <element signature="e#3367#3407#0" />
-                <element signature="e#3409#3460#0" />
-                <element signature="e#3462#3510#0" />
-                <element signature="e#3512#3558#0" />
-                <element signature="e#3560#3627#0" />
-                <element signature="e#3629#3686#0" />
-                <element signature="e#3950#4001#0" />
-                <element signature="e#4003#4253#0" />
-                <element signature="e#4255#4692#0" />
-                <element signature="e#4694#5071#0" />
-                <element signature="e#5073#5301#0" />
-                <element signature="e#5767#6217#0" />
-                <element signature="e#6219#7161#0" />
-                <element signature="e#7163#7267#0" />
-                <element signature="e#7342#7407#0" />
-                <element signature="e#7409#7468#0" />
               </folding>
             </state>
           </provider>
@@ -172,7 +160,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GameTest">
+  <component name="RunManager" selected="Application.Build All">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="GameTest" EXPLICIT_BUILD_TARGET_NAME="all" />
     <configuration name="GameTest" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="GameTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="GameTest" />
     <list>
@@ -199,49 +187,59 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36519000" />
+    <option name="totallyTimeSpent" value="36658000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="651" height="686" extended-state="0" />
+    <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13615024" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.06791569" />
       <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Messages" order="18" weight="0.50687283" />
-      <window_info anchor="bottom" id="CMake" order="15" />
+      <window_info anchor="bottom" id="Messages" order="18" weight="0.5120275" />
       <window_info anchor="bottom" id="Event Log" order="17" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.45391303" />
+      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.19072165" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="16" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.39862543" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13615024" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="12" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="CMake" order="15" />
+      <window_info anchor="bottom" id="Terminal" order="16" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.39862543" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.45391303" />
+      <window_info anchor="bottom" id="Event Log" order="17" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Messages" order="18" weight="0.50687283" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="CMake" order="8" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17393868" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3285171" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.3285171" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.3285171" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="CMake" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -306,6 +304,10 @@
           <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#1548#2091#0" />
+            <element signature="e#2137#2473#0" />
+            <element signature="e#2475#3177#0" />
+            <element signature="e#3178#3835#0" />
           </folding>
         </state>
       </provider>
@@ -340,6 +342,10 @@
           <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#1548#2091#0" />
+            <element signature="e#2137#2473#0" />
+            <element signature="e#2475#3177#0" />
+            <element signature="e#3178#3835#0" />
           </folding>
         </state>
       </provider>
@@ -414,6 +420,10 @@
           <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#1548#2091#0" />
+            <element signature="e#2137#2473#0" />
+            <element signature="e#2475#3177#0" />
+            <element signature="e#3178#3835#0" />
           </folding>
         </state>
       </provider>
@@ -533,44 +543,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/brokerage.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="510">
           <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4981">
+        <state relative-caret-position="188">
           <caret line="293" column="50" selection-start-line="293" selection-start-column="50" selection-end-line="293" selection-end-column="50" />
           <folding>
             <element signature="e#14#32#0" expanded="true" />
-            <element signature="e#3191#3365#0" />
-            <element signature="e#3367#3407#0" />
-            <element signature="e#3409#3460#0" />
-            <element signature="e#3462#3510#0" />
-            <element signature="e#3512#3558#0" />
-            <element signature="e#3560#3627#0" />
-            <element signature="e#3629#3686#0" />
-            <element signature="e#3950#4001#0" />
-            <element signature="e#4003#4253#0" />
-            <element signature="e#4255#4692#0" />
-            <element signature="e#4694#5071#0" />
-            <element signature="e#5073#5301#0" />
-            <element signature="e#5767#6217#0" />
-            <element signature="e#6219#7161#0" />
-            <element signature="e#7163#7267#0" />
-            <element signature="e#7342#7407#0" />
-            <element signature="e#7409#7468#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="87" column="43" lean-forward="true" selection-start-line="87" selection-start-column="43" selection-end-line="87" selection-end-column="43" />
+        <state relative-caret-position="459">
+          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#1548#2091#0" />
+            <element signature="e#2137#2473#0" />
+            <element signature="e#2475#3177#0" />
+            <element signature="e#3178#3835#0" />
           </folding>
         </state>
       </provider>
