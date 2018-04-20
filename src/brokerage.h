@@ -32,7 +32,7 @@ std::string Brokerage::getName() {
 }
 // TODO: get bigAL code
 double Brokerage::getFee() {
-    return 0;
+    return fee;
 }
 
 void Brokerage::generateFee() {
