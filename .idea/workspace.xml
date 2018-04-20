@@ -172,14 +172,12 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GroupProject">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GroupProject" RUN_TARGET_NAME="GameTest" EXPLICIT_BUILD_TARGET_NAME="all" />
-    <configuration name="GameTest" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GroupProject" TARGET_NAME="GameTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GroupProject" RUN_TARGET_NAME="GameTest" />
-    <configuration name="GroupProject" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GroupProject" TARGET_NAME="GroupProject" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GroupProject" RUN_TARGET_NAME="GroupProject" />
+  <component name="RunManager" selected="Application.GameTest">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="GameTest" EXPLICIT_BUILD_TARGET_NAME="all" />
+    <configuration name="GameTest" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="GameTest" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="GameTest" />
     <list>
       <item itemvalue="Application.Build All" />
       <item itemvalue="Application.GameTest" />
-      <item itemvalue="Application.GroupProject" />
     </list>
   </component>
   <component name="SvnConfiguration">
