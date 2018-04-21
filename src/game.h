@@ -48,6 +48,7 @@ public:
     bool buyAsset(const std::string &name, unsigned int quantity); // adds an asset to the user's portfolio and substracts the price from the user's capital; returns true if this action can be taken, false if not
     bool sellAsset(const std::string &name, unsigned int quantity); // removes an asset from the user's portfolio and adds the price to the user's capital; returns true if this action can be taken, false if not
     std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
+    void printAssets(std::vector <Asset> v);
 
     std::string getAdvice(Asset, int); // returns a string representing advice from the adviser
 
@@ -74,7 +75,7 @@ bool Game::nextWeek()
 {
     if (week < FINAL_WEEK) {
         week++;
-        capital -= adviser->getFee();
+        capital -= adviser->getFee(); //Applies weekly adviser fee
         return true;
     }
     else {
@@ -141,8 +142,7 @@ bool Game::setAdviser(const std::string &name)
     return false;
 }
 
-bool Game::buyAsset(const std::string &name, unsigned int quantity)
-{
+bool Game::buyAsset(const std::string &name, unsigned int quantity) {
     for (int i = 0; i < assets.size(); i++)
     {
         if (assets[i].getTicker() == name)
@@ -157,10 +157,9 @@ bool Game::buyAsset(const std::string &name, unsigned int quantity)
             }
         }
     }
+    return true;
 }
-
-bool Game::sellAsset(const std::string &name, unsigned int quantity)
-{
+bool Game::sellAsset(const std::string &name, unsigned int quantity) {
     for (auto &a : assets) {
         if (a.getTicker() == name)
         {
@@ -176,6 +175,9 @@ bool Game::sellAsset(const std::string &name, unsigned int quantity)
     }
 }
 
+std::string Game::getAdvice(Asset asset, int weekNum) {
+    return adviser->getAdvice(asset, weekNum);
+}
 std::vector<Asset> Game::getPortfolio() {
     std::vector<Asset> portfolio;
     for (auto &a : assets)
@@ -188,8 +190,8 @@ std::vector<Asset> Game::getPortfolio() {
     return portfolio;
 }
 
-std::vector<Brokerage> Game::loadBrokerages(const std::string &filename)
-{
+//Read Game Contents from txt files
+std::vector<Brokerage> Game::loadBrokerages(const std::string &filename) {
     std::vector<Brokerage> b;
     std::string line;
     std::ifstream file(filename);
@@ -208,9 +210,7 @@ std::vector<Brokerage> Game::loadBrokerages(const std::string &filename)
 
     return b;
 }
-
-std::vector<Adviser> Game::loadAdvisers(const std::string &filename)
-{
+std::vector<Adviser> Game::loadAdvisers(const std::string &filename) {
     std::vector<Adviser> a;
     std::string line;
     std::ifstream file(filename);
@@ -229,9 +229,7 @@ std::vector<Adviser> Game::loadAdvisers(const std::string &filename)
 
     return a;
 }
-
-std::vector<Asset> Game::loadAssets(const std::string &filename)
-{
+std::vector<Asset> Game::loadAssets(const std::string &filename) {
     std::vector<Asset> a;
     std::string line;
     std::ifstream file(filename);
@@ -267,22 +265,19 @@ std::vector<Asset> Game::loadAssets(const std::string &filename)
     return a;
 }
 
-std::string Game::getAdvice(Asset asset, int weekNum) {
-    return adviser->getAdvice(asset, weekNum);
-}
 
+//Getters for game components
 std::vector<Brokerage> Game::getBrokerages() {
     return brokerages;
 }
-
 std::vector<Adviser> Game::getAdvisers() {
     return advisers;
 }
-
 std::vector<Asset> Game::getAssets() {
     return assets;
 }
 
+//Print Functions
 void Game::printBrokerages(std::vector <Brokerage> v){
     std::cout << std::endl;
     for (int i =0; i < v.size(); ++i){
@@ -290,11 +285,16 @@ void Game::printBrokerages(std::vector <Brokerage> v){
     }
     std::cout << std::endl;
 }
-
 void Game::printAdvisers(std::vector <Adviser> v){
     std::cout << std::endl;
     for (int i =0; i < v.size(); ++i){
         std::cout << "Adviser " << i+1 << ": " << v[i].getName() << std::endl;
     }
     std::cout << std::endl;
+}
+void Game::printAssets(std::vector <Asset> v){
+    std::cout << std::endl;
+    for(int i = 0; i < v.size(); ++i){
+        std::cout << "Asset " << i+1 << ": " << v[i].getTicker() << std::endl;
+    }
 }
