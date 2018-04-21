@@ -143,12 +143,19 @@ bool Game::setAdviser(const std::string &name)
 }
 
 bool Game::buyAsset(const std::string &name, unsigned int quantity) {
+    std::string userIn;
+    std::cout << "How many shares of " << name << " would you like to purchase: ";
+    //std::getline(std::cin, userIn);
+    std::cin >> userIn;
+    quantity = std::stoi(userIn);
+
     for (int i = 0; i < assets.size(); i++)
     {
         if (assets[i].getTicker() == name)
         {
             if (assets[i].getPriceAtWeek(week) * quantity > capital)
             {
+                std::cout << "You do not have enough money to buy those shares.\n" << std::endl;
                 return false;
             }
             else {
@@ -158,6 +165,7 @@ bool Game::buyAsset(const std::string &name, unsigned int quantity) {
         }
     }
     return true;
+
 }
 bool Game::sellAsset(const std::string &name, unsigned int quantity) {
     for (auto &a : assets) {
@@ -165,6 +173,7 @@ bool Game::sellAsset(const std::string &name, unsigned int quantity) {
         {
             if (quantity > a.getQuantity())
             {
+                std::cout << a.getTicker()  << " has " << a.getQuantity() << " shares"<< std::endl;
                 return false;
             }
             else {
