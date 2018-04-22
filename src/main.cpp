@@ -26,10 +26,10 @@ void checkAccountInfo(Game *g);
 void checkMarkets(Game *g);
 void modifyInvestment(Game *g);
 void printAdvice(Game *g);
+void nextWeek(Game *g);
 
 
-int main()
-{
+int main() {
     string name; // a string value representing the user's name
     bool game; // a boolean value representing if the user wants to play
     int startingAmount; // an int value representing the starting amount of money that a player has
@@ -39,17 +39,15 @@ int main()
     game = playGame();
 
     // if the user decides not to play the game, close the game
-    if (!game)
-    {
-        cout << "You chose not to play Asset Management Simulator." <<endl;
+    if (!game) {
+        cout << "You chose not to play Asset Management Simulator." << endl;
         return 0;
     }
-    // if the user decides to play, say thanks
-    else
-    {
-      cout << "Thanks for choosing to play Asset Management Simulator" << endl;
-      cout << "Let's get started." << endl;
-      cout << endl;
+        // if the user decides to play, say thanks
+    else {
+        cout << "Thanks for choosing to play Asset Management Simulator" << endl;
+        cout << "Let's get started." << endl;
+        cout << endl;
     }
 
     // sets up game object with a random starting capital and the user's name
@@ -68,46 +66,47 @@ int main()
     // prints the users capital
     cout << "You now have: $" << g->getCapital() << endl << endl;
 
-    int decisionTime;
-    int userDecision;
+    // initializes variables for game play
+    string userDecision;
+    int decision;
+    stringstream convert;
 
-    //Loop through 6 months done weekly (24 weeks)
-    while(g->getWeek() < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
-        decisionTime = 6; //Gives the user a maximum of 6 decisions per day
-        while(decisionTime > 0) {
-            decisionTime -= 1; //user has less decision time
-            userDecision = makeDecision();
-            switch (userDecision)
-            { //new
-                case 1:
-                    checkAccountInfo(g);// (Option 1) TODO: Fill in method
-                    break;
-                case 2:
-                    checkMarkets(g);//(Option 2) TODO: Fill in
-                    // prints all potential investments
-                    break;
-                case 3:
-                    modifyInvestment(g); //(Option 3) TODO: Fill in
-                    break;
-                case 4:
-                    printAdvice(g);// (Option 4) TODO: Fill in
-                    break;
-                case 5:
-                    break;
-                default:
-                    cout << "See switch statement on main.cpp starting on line " << endl;
-                    break;
-            }
+    // while loop runs until the current week is equal to the last week
+    while (g->getWeek() != g->getFinalWeek())
+    {
+        // gets a decision from the user
+        decision = makeDecision();
 
+        // decode the user's input and call the proper method
+        switch (decision)
+        {
+            case 1:
+                // check the users account information
+                checkAccountInfo(g);
+                break;
+            case 2:
+                // check the current prices of all assets
+                checkMarkets(g);
+                break;
+            case 3:
+                // allows the user to buy or sell assets
+                modifyInvestment(g);
+                break;
+            case 4:
+                // gets advice from the user's chosen adviser
+                printAdvice(g);
+                break;
+            case 5:
+                // goes to the next week of game play
+                nextWeek(g);
+                break;
+            default:
+                break;
         }
-        g->nextWeek(); //Increments the week in game class
-        cout << "we are now on week " << g->getWeek() << "\n" << endl; //FIXME: delete later
-        //TODO: explainHowWeekWent(); Gives a short story about the week based on financial outcomes
-        //TODO: suggestionForNextWeek(); Gives an inner dialogue on what could be done for better financial outcome
     }
-    //TODO: Create a means of summarizing the events of all 26 weeks.
-	cout << "Finished main" << endl;
-	return 0;
+
+
+    return 0;
 }
 
 //prints message to explain the game
@@ -382,7 +381,6 @@ void buyAssets(Game *g)
     cout << "\nWhich of these assets would you like to buy?" << endl;
     g->printAssets();
     while (!chooseAs) {
-        //getline(cin, assetName); FIXME: Not working in Sean's IDE
         cin >> assetName;
 
         chooseAs = g->buyAsset(assetName, 1);
@@ -410,7 +408,7 @@ int makeDecision()
     cout << "4. Get advice" << endl;
     cout << "5. End week" << endl;
 
-    //
+    // reads in the user's decision until a correct selection is made
     while(cin >> decision) {
         cout << endl;
         if (decision == "1")
@@ -520,6 +518,17 @@ void printAdvice(Game *g)
 
 // prints out the adviser's advice
   cout << *(g->printAd(assetName)) << endl;
+}
+
+void nextWeek(Game *g)
+{
+    // advances the game to the next week
+    g->nextWeek();
+
+    // welcomes the user to the next week
+    cout << "Good morning! Welcome to week " << g->getWeek() << "." << endl;
+    cout << "You current portfolio value is " << g->getTotalMoney() << endl;
+
 }
 
 // spins a wheel to determine how much initial capital the player is awarded
