@@ -357,9 +357,9 @@ void Story::goodStory(){ /*---Chooses 1 of 5 good stories-----*/
 } //end the choosing method
 void Story::goodStory1(){
     std::cout << "Today was a good day. Absolutely nothing could make it go wrong." << std::endl;
-    std::cout << "You go home knowing that the universe is on your side. Atleast for the time being." << std::endl;
+    std::cout << "You go home knowing that the universe is on your side. At least for the time being." << std::endl;
     std::cout << "Due to your excitement, you were unable to sleep. Anxious and impatient, you check your portfolio on your phone." << std::endl;
-    std::cout << "You are then greeted with flashes of bright green and an euphoria like no other encompases you." << std::endl;
+    std::cout << "You are then greeted with flashes of bright green and an euphoria like no other encompasses you." << std::endl;
     std::cout << std::endl;
 }
 //Things going the user's way
@@ -371,6 +371,34 @@ void Story::goodStory2(){
     std::cout << std::endl;
 }
 //plenty of cash
+void Story::goodStory3(){
+    std::cout << "You stop by the local ice cream shop on your way home to treat yourself to some "
+                 "cookies and cream ice cream. The TV is on and you see that all the securities you have invested in "
+                 "have outperformed this quarter, and you promptly drop your ice cream on the floor."<<std::endl;
+    std::cout <<"You call wifey on the phone and tell her that you are going to surprise her tonight."<< std::endl;
+    std::cout <<"You then go to your nearest boat dealership and purchase a shiny new boat."<< std::endl;
+    std::cout <<"When you show wifey the new boat, she gets really mad at first, and throws her shoe at you."<< std::endl;
+    std::cout <<"Then, you pull a huge wad of cash out of your pocket and start showering her head with dollar bills, "
+                "and she suddenly loves the new boat, and decides to plan a party."<< std::endl << std::endl;
+}
+void Story::goodStory4(){
+    std::cout<<"After work that day, you stop into the restroom to shave your head to enhance your existence." << std::endl;
+    std::cout <<"While the water is running, you overhear the TV and there is some breaking news about the stock market."<< std::endl;
+    std::cout <<"With head half-shaved, you walk out into the living room and watch the TV and hear that your portfolio "
+                "is now worth substantially more. You tell your spouse that now would be a great time to make a new baby."<< std::endl;
+    std::cout <<"Thrilled, you and your partner get to work. Hard at work, you both sit down and create a new college fund,"
+                "and use your new money to pay it all off at once."<< std::endl;
+    std::cout << std::endl;
+}
+void Story::goodStory5(){
+    std::cout <<"As the market opens on Monday, you see the value of your portfolio increase to an unexpectedly high"
+                "value."<< std::endl;
+    std::cout<<"You promptly march into your bosses office and tell him that he is fired." << std::endl;
+    std::cout <<"Your boss tells you that you don't have the authority to do that, and that you joke isn't funny."<< std::endl;
+    std::cout <<"You proceed to tell your boss that you don't care, untucking your shirt right in front of him."<< std::endl;
+    std::cout <<"He asks you what you are doing, and your is, \"Whatever I want!!\" You decide to retire early."<< std::endl;
+    std::cout << std::endl;
+}
 //FIXME: Include good and very good stories
 //--------------VERY GOOD STORIES--------------------
 void Story::veryGoodStory(){ /*---Chooses 1 of 5 very good stories-----*/
@@ -405,6 +433,53 @@ void Story::veryGoodStory(){ /*---Chooses 1 of 5 very good stories-----*/
     }
 } //end the choosing method
 //Multi millionaire
+void Story::veryGoodStory1(){
+    std::cout << "Now with a portfolio worth a fortune, you decide to do the one thing you have always wanted to do." << std::endl;
+    std::cout << "You go get a recreational pilot license, and buy a macadamia nut farm in Hawai'i." << std::endl;
+    std::cout << "You decide to buy a seaplane that you land in the water and then store the plane in your backyard." << std::endl;
+    std::cout << "On your macadamia nut farm, you decide to grow a massive amount of orchids, and you win "
+                 "the world orchid-growing championship for the best of show." << std::endl;
+    std::cout << "You spend your days flying your seaplane from island to island, jet skiing, and scuba diving with whales." << std::endl;
+    std::cout << "" << std::endl;
+}
+void Story::veryGoodStory2(){
+    std::cout << "Now with a portfolio worth a fortune, you decide to do the one thing you have always wanted to do." << std::endl;
+    std::cout << "You decide that you are going to give your wife the one thing she has always dreamed of." << std::endl;
+    std::cout << "You buy yourself a nice plot of land, a bulldozer, and build a small house." << std::endl;
+    std::cout << "You build her the most lush and exotic botanical garden with the rarest fruits from all over the world." << std::endl;
+    std::cout << "Inside the house, you create a meditation area where anyone can come to practice a deeper connection to nature"
+                 "and realign themselves with the Univarse." << std::endl;
+    std::cout << "" << std::endl;
+}
+void Story::veryGoodStory3(){
+    std::cout << "Now with a portfolio worth a fortune, you decide to do the one thing you have always wanted to do." << std::endl;
+    std::cout << "You buy an \"Around The World\" plane ticket, and travel everywhere. You talk with people about their"
+                 "ancient practices, and learn about their ways of spirituality." << std::endl;
+    std::cout << "You find yourself a guru, and decide to never shave again. Covered in body hair, you take all of your money"
+                 "and donate it to a cause you believe in, and surrender your life to your newly discovered purpose." << std::endl;
+    std::cout << "" << std::endl;
+}
+void Story::veryGoodStory4(){
+    std::cout << "Now with a portfolio worth a fortune, you decide to do the one thing you have always wanted to do." << std::endl;
+    std::cout << "You decide to start writing books about how to get rich. Since everybody wants to get rich, they "
+                 "all start reading your books, and you quickly become a bestselling author, making you even richer." << std::endl;
+    std::cout << "You then start hosting interactive conventions, where you help people to find their inner strength, "
+                 "and become all that they can be." << std::endl;
+    std::cout << "Everyone wants to listen to you because you are always making people beleive in themselves, and as a result,"
+                 "you also help others to realize their own ultimate success, and they too make millions of dollars and "
+                 "likewise pass it on." << std::endl;
+    std::cout << "" << std::endl;
+}
+void Story::veryGoodStory5(){
+    std::cout << "Now with a portfolio worth a fortune, you decide to do the one thing you have always wanted to do." << std::endl;
+    std::cout << "You become an Instagram star, posting pictures of all the expensive things you buy." << std::endl;
+    std::cout << "Everyone talks about how amazing and beautiful you are, and you just continue to buy more stuff in expensive stores."
+                 "You buy an exotic car, an exotic pet, and million-dollar watch that can tell you what time it is." << std::endl;
+    std::cout << "You also throw crazy parties and invite hundreds of people, and provide an open bar." << std::endl;
+    std::cout << "Your life becomes a TV reality show, and suddenly everyone in the world cares about all of your"
+                 "life's most trivial matters." << std::endl;
+    std::cout << "" << std::endl;
+}
 
 /*-------------Ending Stories-------------*/
 void Story::endingStory(){ /*---Chooses 1 of 5 ending stories-----*/
