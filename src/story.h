@@ -1,5 +1,35 @@
 #pragma once
 
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%-STORY_DOCUMENTATION-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ * This header contains the class definition for 'story', which provides a narrative    |
+ * for the user, in an effort to make the simulation more engaging. As an eduacational  |
+ * platform, finance students will easily be able to relate the performance of          |
+ * their portfolios to the actual consequences that follow. This will help the          |
+ * users to actually understand that losing money is bad,and leads to negative          |
+ * consequences. Similarly, losing all of your money will lead you to a hopeless        |
+ * existence where your wife might divorce you, and cockroaches eat your last           |
+ * crumbs of food. Also, making wise investments will lead to a very positive           |
+ * outcome where you can ride jetskis in Fiji and do other cool shit.                   |
+ *                                                                                      |
+ * This is important for demonstration purposes because it incentivizes the outcomes    |
+ * and makes the user think more strategically about how they can improve theQ          |
+ * results of the their portfolio.                                                      |
+ *                                                                                      |
+ * There are 5 degrees of story outcomes, ranging from very bad to very                 |
+ * good. Of each degree of a story outcome, there are 5 variations of each.             |
+ * i.e. there are 5 very bad stories, 5 bad stories, 5 neutral stories,                 |
+ * 5 good stories, and 5 very good stories.                                             |
+ * There are also 5 ending stories, for when the player reaches the end of the          |
+ * simulation.                                                                          |
+ *                                                                                      |
+ * Each story is outputted to the output stream inside the method that calls it.        |
+ * The method signatures are pretty self-explainatory. Notice that each method type     |
+ * is void and so it does not return the string, but instead prints                     |
+ * directly from within the method.                                                     |
+ *                                                                                      |
+ * %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ */
+
 #include <string>
 
 class Story{
