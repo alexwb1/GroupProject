@@ -59,7 +59,6 @@ int main()
 
     // prints user's starting capital
     cout << "Your starting capital is: $" << g->getCapital() << endl;
-    cout << endl;
 
     // prompts the user to set up their portfolio and other game options
     promptBrokerage(g);
@@ -229,8 +228,8 @@ void promptBrokerage(Game *g)
     string brokerageName;
 
     // prints out the options for the user
-    cout << "Which of these brokerages would you like to use?" << endl;
     g->printBrokerages();
+    cout << "Which of these brokerages would you like to use? (Please type a name)" << endl;
 
     // begins loop to ensure that the user entered well formed input
     while (!chooseB)
@@ -250,7 +249,7 @@ void promptBrokerage(Game *g)
             g->printBrokerages();
         }
     }
-    cout << "Thanks for choosing " << brokerageName << " as your brokerage.\n" << endl;
+    cout << "Thanks for choosing " << brokerageName << " as your brokerage." << endl;
     cin.clear();
     cout << endl;
 }
@@ -263,7 +262,7 @@ void promptAdviser(Game *g)
     string adviserName;
 
     // prints out the prompt to the user and the list of advisers that can be chosen
-    cout << "Which of these advisers would you like to work with?" << endl;
+    cout << "Which of these advisers would you like to work with? (Please type a name)" << endl;
     g->printAdvisers();
 
     // begins loop to ensure that a proper selection is made
@@ -281,20 +280,19 @@ void promptAdviser(Game *g)
             g->printAdvisers();
         }
     }
-    cout << "Thanks for choosing " << adviserName << " as your adviser.";
+    cout << "Thanks for choosing " << adviserName << " as your adviser." << endl;
     cin.clear();
     cout << endl;
 }
 // prints the name of the Advisers and lets the user pick one.
 void promptAssets(Game *g) {
+
     // initializes necessary variables
-    bool chosen = false;
     bool finished = false;
     string assetName;
     string buy;
     string quantity;
     int q;
-
 
     // begins loop to buy multiple assets
     while (!finished) {
@@ -304,8 +302,9 @@ void promptAssets(Game *g) {
         if (buy == "1")
         {
             // prints out the prompt and a list of the available assets that a user can buy
-            cout << "Which of these assets would you like to buy?" << endl;
+            cout << "Your current capital is: " << g->getCapital() << endl;
             g->printAssets();
+            cout << "Which of these assets would you like to buy?" << endl;
 
             // reads in the user's input and attempts to choose the advise
             cin >> assetName;
@@ -320,7 +319,7 @@ void promptAssets(Game *g) {
             }
 
             // prompts the user by asking how many shares they would like to buy and reads in the input
-            cout << "How many shares of " << assetName << " would you like to buy?" << endl;
+            cout << "How many shares of " << assetName << " would you like to buy? ";
             cout << "You can buy a maximum of " << g->getBuyingPower(assetName) << " shares." << endl;
             cin >> quantity;
 
@@ -340,10 +339,13 @@ void promptAssets(Game *g) {
                 convert << quantity;
                 convert >> q;
             }
+
+            // buys the asset
+            g->buyAsset(assetName, q);
         }
         else if (buy == "0")
         {
-
+            finished = true;
 
         }
     }
@@ -355,8 +357,8 @@ void sellAssets(Game *g)
     bool chooseAs = false;
     string assetName;
     int numAssets;
-    cout << endl << "Which of these assets would you like to sell?" << endl;
     g->printPortfolio();
+    cout << endl << "Which of these assets would you like to sell?" << endl;
     while (!chooseAs) {
         //getline(cin, assetName); FIXME: Not working in Sean's IDE
         cin >> assetName;
@@ -435,7 +437,8 @@ int makeDecision()
 }
 
 // checks the account information of the user
-void checkAccountInfo(Game *g){
+void checkAccountInfo(Game *g)
+{
     cout << "\nAccount info:\n" << endl;
     double equity = 0;
     vector<Asset> portfolio = g->getPortfolio();
