@@ -5,10 +5,10 @@
 using namespace std;
 //Welcome Methods
 void welcomeMessage();
-
 bool playGame();
 string userName();
-
+int wheel();
+string prizeSetter(int prizeNumber);
 //Week 0 methods
 void promptBrokerage(Game *g);
 void promptAdviser(Game *g);
@@ -28,6 +28,7 @@ int main()
 {
     string name; //name of user
     bool game; //does the user decide to play?
+    int startingAmount;
     //welcomeMessage();
     //game = playGame();//FIXME: Works, just commented out for testing
     game = true;
@@ -37,7 +38,8 @@ int main()
     }
     //name = userName();//FIXME: Works, just commented out for testing
     name = "sean";
-    Game *g = new Game(100000,name);
+    startingAmount = wheel();
+    Game *g = new Game(startingAmount,name);
     cout << "Your starting capital is: "<<g->getCapital() << endl;
     //promptBrokerage(g);//FIXME: Works, just commented out for testing
     g->setBrokerage("Ally Investments"); //DELETE
@@ -53,7 +55,7 @@ int main()
     int userDecision;
 
     //Loop through 6 months done weekly (24 weeks)
-    while(g->getWeek() < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
+    while(i < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
         endWeek = false;
         decisionTime = 6; //Gives the user a maximum of 6 decisions per day
         while(!endWeek && decisionTime > 0) {
@@ -71,7 +73,7 @@ int main()
                     modifyInvestment(g); //(Option 3) TODO: Fill in
                     break;
                 case 4:
-                    getAdvice(g, g->getWeek()+1);// (Option 4) TODO: Fill in
+                    getAdvice(g, i);// (Option 4) TODO: Fill in
                     break;
                 case 5:
                     endWeek = endOfWeek(); // (option 5) TODO: Fill in
@@ -82,13 +84,9 @@ int main()
             }
 
         }
-		
-		g->nextWeek();
-        
-		
-		
-        //TODO: nextWeek(); Increments the week in game class
-        cout << "we are now on week " << g->getWeek() << "\n" << endl; //FIXME: delete later
+        ++i;
+        g->nextWeek(); Increments the week in game class
+        cout << "we are now on week " << i << "\n" << endl; //FIXME: delete later
         //TODO: explainHowWeekWent(); Gives a short story about the week based on financial outcomes
         //TODO: suggestionForNextWeek(); Gives an inner dialogue on what could be done for better financial outcome
     }
@@ -344,14 +342,68 @@ void modifyInvestment(Game *g){
     }
 }
 void getAdvice(Game *g, int weekNum){
-  // prompt the user about which asset they would like to get advice about
-  cout << "Which asset would you like to get advice on?" << endl;
-  std::string asset;
-  cin >> asset;
-
-  // output the users advice
-  cout << g->getAdvice(asset, weekNum) << endl;
+    //print Port
+    cout << "Got Advice" << endl;
 }
 bool endOfWeek(){
     return true;
+}
+
+int wheel(){
+    srand (static_cast <unsigned> (time(0)));                                 //Sets the random number seed
+
+    int maxSpins = 12;                                                        //Sets the maximum number of spins to 12
+    int spinTimes = (rand() % maxSpins + 8);                                  //Sets the number of spins to a range of 8-20
+
+    for (int i = 1; i <= spinTimes; i++){                                     //Loops the wheel "spinTimes" number of times
+        cout << "======================" << endl;                             //Fancy text for the wheel
+        cout << "||   " << prizeSetter(i) << "    ||" << endl;                //First possible prize
+        cout << "||   " << prizeSetter(i + 1) <<  "    ||" << endl;           //Second possible prize
+        cout << "||-> " << prizeSetter(i + 2) << "  <-||" << endl;            //Third possible prize
+        cout << "||   " << prizeSetter(i + 3) << "    ||" << endl;            //Fourth possible prize
+        cout << "||   " << prizeSetter(i + 4) << "    ||" << endl;            //Fifth possible prize
+        cout << "======================" << endl;                             //Fancy text for the wheel
+    }
+
+    string moneyWon = prizeSetter(spinTimes + 2);                             //String "moneyWon" is determined by method prizeSetter (below)
+    int moneyWonInt;                                                      //Creates a float, "moneyWonInt" that will be returned by this method
+
+    if (moneyWon == "$100,000.00"){                                           //If string "moneyWon" equals "$100,000.00" then...
+        moneyWonInt = 100000;                                            //Float "moneyWonInt" is set to 100,000.00
+    }
+    else if (moneyWon == " $50,000.00"){                                      //If string "moneyWon" equals "$50,000.00" then...
+        moneyWonInt = 50000;                                               //Float "moneyWonInt" is set to 50,000.00
+    }
+    else if (moneyWon == " $75,000.00"){                                      //If string "moneyWon" equals "$75,000.00" then...
+        moneyWonInt = 75000;                                             //Float "moneyWonInt" is set to 75,000.00
+    }
+    else if (moneyWon == " $87,500.00"){                                      //If string "moneyWon" equals "$87,500.00" then...
+        moneyWonInt = 87500;                                             //Float "moneyWonInt" is set to 87,500.00
+    }
+    else if (moneyWon == " $67,500.00"){                                      //If string "moneyWon" equals "$67,500.00" then...
+        moneyWonInt = 67500;                                             //Float "moneyWonInt" is set to 67,500.00
+    }
+
+    cout << "You have won " << moneyWon << " from the Wheel of Small Loans!" << endl;      //Output, user has won $ "moneyWon" in initial capital
+    cout << " " << endl;                                                                   //Space between text outputs
+    return moneyWonInt;                                                                  //Method returns float value for users initial capital
+}
+string prizeSetter(int prizeNumber){
+
+    if (prizeNumber == 1 || prizeNumber  == 6 || prizeNumber  == 11 || prizeNumber  == 16 || prizeNumber  == 21){          //If int "prizeNumber" equals 1, or any increment of 5 until 21...
+        return "$100,000.00";                                                                                              //Returns string "$100,000.00"
+    }
+    else if (prizeNumber == 2 || prizeNumber  == 7 || prizeNumber  == 12 || prizeNumber  == 17 || prizeNumber  == 22){     //If int "prizeNumber" equals 2, or any increment of 5 until 22...
+        return " $50,000.00";                                                                                              //Returns string " $50,000.00"
+    }
+    else if (prizeNumber == 3 || prizeNumber  == 8 || prizeNumber  == 13 || prizeNumber  == 18 || prizeNumber  == 23){     //If int "prizeNumber" equals 3, or any increment of 5 until 23...
+        return " $75,000.00";                                                                                              //Returns string " $75,000.00"
+    }
+    else if (prizeNumber == 4 || prizeNumber  == 9 || prizeNumber  == 14 || prizeNumber  == 19 || prizeNumber  == 24){     //If int "prizeNumber" equals 4, or any increment of 5 until 24...
+        return " $87,500.00";                                                                                              //Return " $87,500.00"
+    }
+    else if (prizeNumber == 5 || prizeNumber  == 10 || prizeNumber  == 15 || prizeNumber  == 20 || prizeNumber  == 25){    //If int "prizeNumber" equals 5, or any increment of 5 until 25...
+        return " $67,500.00";                                                                                              //Return " $67,500.00"
+    }
+    return 0;                                                                                                              //Returns 0
 }
