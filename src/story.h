@@ -372,7 +372,7 @@ void Story::goodStory2(){
 }
 //plenty of cash
 //FIXME: Include good and very good stories
-//--------------VERY GOOD STORIES----------------------
+//--------------VERY GOOD STORIES--------------------
 void Story::veryGoodStory(){ /*---Chooses 1 of 5 very good stories-----*/
     unsigned short int choice = (rand()%5)+1;
     switch(choice){
