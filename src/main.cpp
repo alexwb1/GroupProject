@@ -21,7 +21,7 @@ int bankDecisions();
 void checkAccountInfo(Game *g);
 void checkMarkets(Game *g);
 void modifyInvestment(Game *g);
-void getAdvice(Game *g, int weekNum);
+void printAdvice(Game *g);
 bool endOfWeek();
 
 int main()
@@ -49,16 +49,13 @@ int main()
     g->buyAsset("OIL", 1); //FIXME: Mitchell is on the case
     cout << "You now have: " << g->getCapital() << " Money\n" << endl;
 
-    int i = 1;
-    bool endWeek;
     int decisionTime;
     int userDecision;
 
     //Loop through 6 months done weekly (24 weeks)
-    while(i < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
-        endWeek = false;
+    while(g->getWeek() < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
         decisionTime = 6; //Gives the user a maximum of 6 decisions per day
-        while(!endWeek && decisionTime > 0) {
+        while(decisionTime > 0) {
             decisionTime -= 1; //user has less decision time
             userDecision = bankDecisions();
             switch (userDecision) { //new
@@ -73,10 +70,9 @@ int main()
                     modifyInvestment(g); //(Option 3) TODO: Fill in
                     break;
                 case 4:
-                    getAdvice(g, i);// (Option 4) TODO: Fill in
+                    printAdvice(g);// (Option 4) TODO: Fill in
                     break;
                 case 5:
-                    endWeek = endOfWeek(); // (option 5) TODO: Fill in
                     break;
                 default:
                     cout << "See switch statement on main.cpp starting on line " << endl;
@@ -84,9 +80,8 @@ int main()
             }
 
         }
-        ++i;
         g->nextWeek(); //Increments the week in game class
-        cout << "we are now on week " << i << "\n" << endl; //FIXME: delete later
+        cout << "we are now on week " << g->getWeek() << "\n" << endl; //FIXME: delete later
         //TODO: explainHowWeekWent(); Gives a short story about the week based on financial outcomes
         //TODO: suggestionForNextWeek(); Gives an inner dialogue on what could be done for better financial outcome
     }
@@ -143,13 +138,13 @@ void promptBrokerage(Game *g){
     bool chooseB = false;
     string brokerageName;
     cout << "\nWhich of these brokerages would you like to use?" << endl;
-    g->printBrokerages(g->getBrokerages());
+    g->printBrokerages();
     while (!chooseB){
         getline(cin, brokerageName);
         chooseB = g->setBrokerage(brokerageName);
         if (chooseB == false){
             cout << "\nPlease type the name of the brokerage exactly as it is displayed." << endl;
-            g->printBrokerages(g->getBrokerages());
+            g->printBrokerages();
         }
     }
     cout << "Thanks for choosing " << brokerageName << " as your brokerage.\n" << endl;
@@ -159,13 +154,13 @@ void promptAdviser(Game *g){
     bool chooseA = false;
     string adviserName;
     cout << "\nWhich of these Advisers would you like to work with?" << endl;
-    g->printAdvisers(g->getAdvisers());
+    g->printAdvisers();
     while (!chooseA){
         getline(cin, adviserName);
         chooseA = g->setAdviser(adviserName); //FIXME: Ally Invest doesn't work
         if (chooseA == false){
             cout << "\nPlease type the name of the brokerage exactly as it is displayed." << endl;
-            g->printAdvisers(g->getAdvisers());
+            g->printAdvisers();
         }
     }
     cout << "Thanks for choosing " << adviserName << " as your adviser.";
@@ -176,14 +171,14 @@ void promptAssets(Game *g) {
     string assetName;
     int numAssets;
     cout << "\nWhich of these assets are you interested in?" << endl;
-    g->printAssets(g->getAssets());
+    g->printAssets();
     while (!chooseAs) {
         //getline(cin, assetName); FIXME: Wasnt working on Sean's IDE
         cin >> assetName;
         chooseAs = g->buyAsset(assetName, 1);
         if (chooseAs == false) {
             cout << "Please type the name of the asset exactly as it is displayed." << endl;
-            g->printAssets(g->getAssets());
+            g->printAssets();
         }
     }
     cout << "Thank you for choosing " << assetName << ", it has been added to your portfolio." << endl;
@@ -221,7 +216,7 @@ void sellAssets(Game *g) {
     string assetName;
     int numAssets;
     cout << "\nWhich of these assets would you like to sell?" << endl;
-    g->printAssets(g->getPortfolio());
+    g->printPortfolio();
     while (!chooseAs) {
         //getline(cin, assetName); FIXME: Not working in Sean's IDE
         cin >> assetName;
@@ -230,7 +225,7 @@ void sellAssets(Game *g) {
         chooseAs = g->sellAsset(assetName, numAssets);
         if (chooseAs == false) {
             cout << "Please type the name of the asset exactly as it is displayed." << endl;
-            g->printAssets(g->getPortfolio());
+            g->printPortfolio();
         }
     }
     cout << "You have sold " << numAssets << " shares of " << assetName << "." << endl;
@@ -240,7 +235,7 @@ void buyAssets(Game *g){
     string assetName;
     int numAssets;
     cout << "\nWhich of these assets would you like to buy?" << endl;
-    g->printAssets(g->getAssets());
+    g->printAssets();
     while (!chooseAs) {
         //getline(cin, assetName); FIXME: Not working in Sean's IDE
         cin >> assetName;
@@ -248,7 +243,7 @@ void buyAssets(Game *g){
         chooseAs = g->buyAsset(assetName, 1);
         if (chooseAs == false) {
             cout << "Please type the name of the asset exactly as it is displayed." << endl;
-            g->printAssets(g->getAssets());
+            g->printAssets();
         }
     }
     cout << "You have bought shares of " << assetName << "." << endl;
@@ -341,9 +336,14 @@ void modifyInvestment(Game *g){
         cout << "3. No action" << endl;
     }
 }
-void getAdvice(Game *g, int weekNum){
-    //print Port
-    cout << "Got Advice" << endl;
+void printAdvice(Game *g){
+  // prompt user for which asset he would like to get advice about
+  g->printAssets();
+  cout << "Which asset would you like to get advice about?" << endl;
+  string assetName;
+  cin >> assetName;
+
+  cout << *(g->printAd(assetName)) << endl;
 }
 bool endOfWeek(){
     return true;

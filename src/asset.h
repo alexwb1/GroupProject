@@ -16,7 +16,7 @@ class Asset
 
 		int getPriceAtWeek(unsigned int week);
 
-        std::string getTicker();
+		std::string getTicker();
 
 		unsigned int getQuantity();
 
