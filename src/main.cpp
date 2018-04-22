@@ -1,38 +1,41 @@
 #include <iostream>
 #include <cstring>
 #include "game.h"
-
 using namespace std;
-//Welcome Methods
+
+// Welcome methods
 void welcomeMessage();
 bool playGame();
 string userName();
 int wheel();
 string prizeSetter(int prizeNumber);
 
-//Week 0 methods
+// Set up methods
 void promptBrokerage(Game *g);
 void promptAdviser(Game *g);
 void promptAssets(Game *g);
 void sellAssets(Game *g);
 void buyAssets(Game *g);
 
-//Week 1-24 methods
-int bankDecisions();
+// Game play methods
+int makeDecision();
 void checkAccountInfo(Game *g);
 void checkMarkets(Game *g);
 void modifyInvestment(Game *g);
 void printAdvice(Game *g);
-bool endOfWeek();
+
 
 int main()
 {
-    string name;
-    bool game;
-    int startingAmount;
+    string name; // a string value representing the user's name
+    bool game; // a boolean value representing if the user wants to play
+    int startingAmount; // an int value representing the starting amount of money that a player has
     welcomeMessage();
     game = playGame();
-    if (game == false){
+
+    // if the user decides not to play the game
+    if (game == false)
+    {
         cout << "You chose not to play Asset Management Simulator." <<endl;
         return 0;
     }
@@ -50,8 +53,8 @@ int main()
     promptAdviser(g);
     promptAssets(g);
 
-
-    cout << "You now have: " << g->getCapital() << " Money\n" << endl;
+    // prints the users capital
+    cout << "You now have: $" << g->getCapital() << endl << endl;
 
     int decisionTime;
     int userDecision;
@@ -61,8 +64,9 @@ int main()
         decisionTime = 6; //Gives the user a maximum of 6 decisions per day
         while(decisionTime > 0) {
             decisionTime -= 1; //user has less decision time
-            userDecision = bankDecisions();
-            switch (userDecision) { //new
+            userDecision = makeDecision();
+            switch (userDecision)
+            { //new
                 case 1:
                     checkAccountInfo(g);// (Option 1) TODO: Fill in method
                     break;
@@ -95,16 +99,19 @@ int main()
 }
 
 //prints message to explain game
-void welcomeMessage(){
+void welcomeMessage()
+{
     cout << "Welcome to Asset Management Simulator" << endl << endl;
-    cout << "Today, you will learn how to do the following:" << endl << endl;
+    cout << "Today, you have the opportunity to learn how to do the following:" << endl << endl;
     cout << "    1. Choose a financial adviser." << endl;
     cout << "    2. Choose assets to invest in." << endl;
     cout << "    3. Choose a brokerage to work with." << endl;
     cout << "    4. Manage funds over a long period of time." << endl << endl;
 }
-//User decides to play the game (or not)
-bool playGame(){
+
+// prompts the user to decide if they would like to play
+bool playGame()
+{
     int decision;
     bool playGame = false;
     cout << "Would you like to learn these things? (Type 1 for 'Yes' or 0 for 'No')" << endl;
@@ -125,8 +132,9 @@ bool playGame(){
     }
     return playGame;
 }
-//Gets user's name for use in Game creation
-string userName(){
+// gets user's name for use in Game creation
+string userName()
+{
     cout << "Thanks for choosing to play Asset Management Simulator.\nLets get started.\n" << endl;
     cout << "What is your name?" << endl;
     string name;
@@ -137,9 +145,10 @@ string userName(){
 }
 
 
-//FIXME: must change to a getLine() for user input.
-//Prints the name of Brokerages and lets the user pick one.
-void promptBrokerage(Game *g){
+// FIXME: must change to a getLine() for user input.
+// prints the name of Brokerages and lets the user pick one.
+void promptBrokerage(Game *g)
+{
     bool chooseB = false;
     string brokerageName;
     cout << "\nWhich of these brokerages would you like to use?" << endl;
@@ -154,8 +163,10 @@ void promptBrokerage(Game *g){
     }
     cout << "Thanks for choosing " << brokerageName << " as your brokerage.\n" << endl;
 }
-//Prints the name of the Advisers and lets the user pick one.
-void promptAdviser(Game *g){
+
+// prints the name of the Advisers and lets the user pick one.
+void promptAdviser(Game *g)
+{
     bool chooseA = false;
     string adviserName;
     cout << "\nWhich of these Advisers would you like to work with?" << endl;
@@ -170,8 +181,9 @@ void promptAdviser(Game *g){
     }
     cout << "Thanks for choosing " << adviserName << " as your adviser.";
 }
-//Prints the name of the Advisers and lets the user pick one.
-void promptAssets(Game *g) {
+// prints the name of the Advisers and lets the user pick one.
+void promptAssets(Game *g)
+{
     bool chooseAs = false;
     string assetName;
     int numAssets;
@@ -216,11 +228,14 @@ void promptAssets(Game *g) {
 //        }
 //    }
 }
-void sellAssets(Game *g) {
+
+// prompts the user to sell assets
+void sellAssets(Game *g)
+{
     bool chooseAs = false;
     string assetName;
     int numAssets;
-    cout << "\nWhich of these assets would you like to sell?" << endl;
+    cout << endl << "Which of these assets would you like to sell?" << endl;
     g->printPortfolio();
     while (!chooseAs) {
         //getline(cin, assetName); FIXME: Not working in Sean's IDE
@@ -235,7 +250,10 @@ void sellAssets(Game *g) {
     }
     cout << "You have sold " << numAssets << " shares of " << assetName << "." << endl;
 }
-void buyAssets(Game *g){
+
+// prompts the user to buy assets
+void buyAssets(Game *g)
+{
     bool chooseAs = false;
     string assetName;
     int numAssets;
@@ -253,42 +271,50 @@ void buyAssets(Game *g){
     }
     cout << "You have bought shares of " << assetName << "." << endl;
 }
-//////////////////Week 1-24 methods////
-int bankDecisions(){ // Returns an int for the decision the player makes
-    string decision;
-    cout << "What action would you like to take? (please select an integer that is shown)\n" << endl;
-     //Nested method to make looping simpler
-    //while (true){
-        cout << "1. Check Account Info." << endl;
-        cout << "2. Check the Market." << endl;
-        cout << "3. Modify an Investment." << endl;
-        cout << "4. Get Advice." << endl;
-        cout << "5. End Week." << endl;
-        while(cin >> decision) {
-        cout << endl;
 
-        if(decision == "1"){
+// Definition of game play methods
+
+// prompts the user to make their decision
+int makeDecision()
+{
+    string decision;
+    cout << "What action would you like to take? (Enter an integer 1 - 5)" << endl << endl;
+    cout << "1. Check account info" << endl;
+    cout << "2. Check the market" << endl;
+    cout << "3. Modify an investment" << endl;
+    cout << "4. Get advice" << endl;
+    cout << "5. End week" << endl;
+    while(cin >> decision) {
+        cout << endl;
+        if (decision == "1")
+        {
             return 1;
         }
-        if(decision == "2"){
+        if (decision == "2")
+        {
             return 2;
         }
-        if(decision == "3"){
+        if (decision == "3")
+        {
             return 3;
         }
-        if(decision == "4"){
+        if (decision == "4")
+        {
             return 4;
         }
-        if(decision == "5"){
+        if (decision == "5")
+        {
             return 5;
         }
-        else{
-            cout << "Please enter an integer 1-5 make a decision." << endl;
+        else
+        {
+            cout << "Please enter an integer 1 - 5." << endl;
             continue;
         }
     }
 }
-//Decisions
+
+// checks the account information of the user
 void checkAccountInfo(Game *g){
     cout << "\nAccount info:\n" << endl;
     double equity = 0;
@@ -308,18 +334,23 @@ void checkAccountInfo(Game *g){
     cout << "Current equity: " << equity << endl;
 
 }
-void checkMarkets(Game *g){
-    cout << "\nMarket Prices:" << endl;
+
+// prints out the market price of all assets
+void checkMarkets(Game *g)
+{
+    cout << endl << "Market Prices:" << endl;
     vector<Asset> ass = g->getAssets();
     cout << "Asset : Current Price" << endl;
 
     for (auto &a : ass)
     {
-        cout << a.getTicker() << " : " << a.getPriceAtWeek(g->getWeek()) << endl;;
+        cout << a.getTicker() << " - $" << a.getPriceAtWeek(g->getWeek()) << endl;;
     }
-
 }
-void modifyInvestment(Game *g){
+
+// prompts the user to modify one of their investments
+void modifyInvestment(Game *g)
+{
     string userDecisionAlt;
     cout << "1. Buy" << endl;
     cout << "2. Sell" << endl;
@@ -341,20 +372,23 @@ void modifyInvestment(Game *g){
         cout << "3. No action" << endl;
     }
 }
-void printAdvice(Game *g){
-  // prompt user for which asset he would like to get advice about
-  g->printAssets();
-  cout << "Which asset would you like to get advice about?" << endl;
-  string assetName;
-  cin >> assetName;
 
+// prints advice about a specific asset
+void printAdvice(Game *g)
+{
+    // asks the user which asset they would like to get advice about
+    g->printAssets();
+    cout << "Which asset would you like to get advice about?" << endl;
+    string assetName;
+    cin >> assetName;
+
+// prints out the adviser's advice
   cout << *(g->printAd(assetName)) << endl;
 }
-bool endOfWeek(){
-    return true;
-}
 
-int wheel(){
+// spins a wheel to determine how much initial capital the player is awarded
+int wheel()
+{
     srand (static_cast <unsigned> (time(0)));                                 //Sets the random number seed
 
     int maxSpins = 12;                                                        //Sets the maximum number of spins to 12
@@ -393,7 +427,10 @@ int wheel(){
     cout << " " << endl;                                                                   //Space between text outputs
     return moneyWonInt;                                                                  //Method returns float value for users initial capital
 }
-string prizeSetter(int prizeNumber){
+
+// helps the wheel method spin the wheel by determining the price amount from a random int
+string prizeSetter(int prizeNumber)
+{
 
     if (prizeNumber == 1 || prizeNumber  == 6 || prizeNumber  == 11 || prizeNumber  == 16 || prizeNumber  == 21){          //If int "prizeNumber" equals 1, or any increment of 5 until 21...
         return "$100,000.00";                                                                                              //Returns string "$100,000.00"
