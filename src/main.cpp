@@ -3,6 +3,7 @@
 #include <climits>
 #include <algorithm>
 #include "game.h"
+#include <time.h>
 using namespace std;
 
 // Welcome methods
