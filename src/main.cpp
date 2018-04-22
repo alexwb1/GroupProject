@@ -399,13 +399,18 @@ void buyAssets(Game *g)
 // prompts the user to make their decision
 int makeDecision()
 {
+    // initializes necessary variables
     string decision;
+
+    // prints out the options that a user can make
     cout << "What action would you like to take? (Enter an integer 1 - 5)" << endl << endl;
     cout << "1. Check account info" << endl;
     cout << "2. Check the market" << endl;
     cout << "3. Modify an investment" << endl;
     cout << "4. Get advice" << endl;
     cout << "5. End week" << endl;
+
+    //
     while(cin >> decision) {
         cout << endl;
         if (decision == "1")
@@ -439,22 +444,30 @@ int makeDecision()
 // checks the account information of the user
 void checkAccountInfo(Game *g)
 {
-    cout << "\nAccount info:\n" << endl;
-    double equity = 0;
+    // initializes variables
+    int equity = 0;
     vector<Asset> portfolio = g->getPortfolio();
 
+    // prints out header information for the table
+    cout << "Account info:\n" << endl;
     cout << "Asset : Quantity\n" << endl;
+
+    // determines the total equity and prints out how many shares of each asset is owned
     for (auto &a : portfolio)
     {
         if(a.getQuantity() != 0)
         {
+            // prints out the asset owned and the number of shares owned
             cout << a.getTicker() << " : " << a.getQuantity() << endl;
+            // adds up the total amount of equity
             equity = equity + a.getQuantity()*a.getPriceAtWeek(g->getWeek());
         }
     }
 
+    // prints out the current amount of cash and the amount of money that has been invested
     cout << "\nCash on hand: " << g->getCapital() << endl;
-    cout << "Current equity: " << equity << endl;
+    cout << "Current amount invested : " << equity << endl;
+    cout << endl;
 
 }
 
