@@ -1,13 +1,15 @@
+#pragma once
 
 #include <string>
 
 class Story{
     private:
         //Not sure if we need any private variables
-        string name; //Is the player's name
+        std::string name; //Is the player's name
     public:
-      Story(string name);
-      int getWeeklyValue(int totalMoney, int percent increase); //gets value to get random story of week
+      Story(std::string name);
+      std::string getName();
+      int getWeeklyValue(int totalMoney, int percentIncrease); //gets value to get random story of week
       void getWeeklyStory(int weeklyValue); //contains (options 1-5);
       //(if weekLyValue = 1)
       void veryBadStory();
@@ -15,41 +17,49 @@ class Story{
           void veryBadStory2();
           void veryBadStory3();
           void veryBadStory4();
-          void veryBadStory5();
+          void veryBadStory5();//TODO: selects 1 of 5 very bad stories 
       //(if weekLyValue = 2)
-      void badStory();
-          void badstory1();
-          void badstory2();
-          void badstory3();
-          void badstory4();
-          void badstory5();
+      void badStory(); //TODO: selects 1 of 5 bad stories
+          void badStory1();
+          void badStory2();
+          void badStory3();
+          void badStory4();
+          void badStory5();
       //(if weekLyValue = 3)
       void neutralStory();
           void neutralStory1();
           void neutralStory2();
           void neutralStory3();
           void neutralStory4();
-          void neutralStory5();
+          void neutralStory5();//TODO: selects 1 of 5 neutral stories
       //(if weekLyValue = 4)
       void goodStory();
           void goodStory1();
           void goodStory2();
           void goodStory3();
           void goodStory4();
-          void goodStory5();
+          void goodStory5();//TODO: selects 1 of 5 good stories
       //(if weekLyValue = 5)
       void veryGoodStory();
           void veryGoodStory1();
           void veryGoodStory2();
           void veryGoodStory3();
           void veryGoodStory4();
-          void veryGoodStory5();
-}
+          void veryGoodStory5();//TODO: selects 1 of 5 very good stories
+
+      void endStory1();
+      void endStory2();
+      void endStory3();
+      void endStory4();
+      void endStory5();
+};
 //Story constructor
-Story::Story(string name){
+Story::Story(std::string name){
   this->name = name;
 }
-
+std::string Story::getName(){
+    return name;
+}
 //VERY BAD
 //Omen of something terrible
 void Story::veryBadStory1(){
@@ -61,9 +71,9 @@ void Story::veryBadStory1(){
 }
 //Sad existence
 void Story::veryBadStory2(){
-  std::cout << "You tell yourself, \""<< name << ", it really sucks to be poor!\" as you eat cheap sushi for dinner." << std::endl;
+  std::cout << "You tell yourself, \""<< getName() << ", it really sucks to be poor!\" as you eat cheap sushi for dinner." << std::endl;
   std::cout << "Your assets will eventually improve, right? The doubt of that thought makes you uncomfortable." << std::endl;
-  std::cout << "You attempt to reassure yourself by watching the daily stocks on television, but without success" << estd::endl;
+  std::cout << "You attempt to reassure yourself by watching the daily stocks on television, but without success" << std::endl;
   std::cout << "Unfortunately, this miserable existence called life will continue to be miserable. When will it ever end?" << std::endl;
   std::cout << std::endl;
 }
@@ -98,7 +108,7 @@ void Story::veryBadStory5(){
 
 //BAD STORIES
 //word conufusion
-void Story::badstory1(){
+void Story::badStory1(){
     std::cout << "In hindsight, you feel you've tried your best in the decisions you have made today." << std::endl;
     std::cout << "Surely you will make great gains with such precise planning and utilization of logic. Surely?" << std::endl;
     std::cout << "Suddenly, you come to a terrifying realization that you have actually done the opposite of what you had set out to do!" << std::endl;
@@ -106,15 +116,15 @@ void Story::badstory1(){
     std::cout << std::endl;
 }
 //Can't sleep at night
-void Story::badstory2(){
+void Story::badStory2(){
     std::cout << "You go home feeling unsure about the choices you've had made." << std::endl;
     std::cout << "You turn on the television and notice one of your assets being fudded" << std::endl;
     std::cout << "You watch in horror and disbelief as your assets plunge in value." << std::endl;
     std::cout << "You couldn't sleep that night knowing money has been lost." << std::endl;
-    std::cout << std::endl;std::
+    std::cout << std::endl;
 }
 //black cat
-void Story::badstory3(){
+void Story::badStory3(){
     std::cout << "You go home feeling confident that your assets will experience a moon today" << std::endl;
     std::cout << "You notice a black cat pass by you before coming home and start to feel unsure" << std::endl;
     std::cout << "Nervous and anxious, you turn on the daily stocks report and watch in absolute horror." << std::endl;
@@ -133,12 +143,12 @@ void Story::badStory4(){
 }
 //forgetting your troubles
 void Story::badStory5(){
-  cout << "Sometimes its worth taking risks if the rewards are high enough. Afterall," << endl;
-  cout << "all rich people have taken risks to get to where they are!" << endl;
-  cout << "However such thinking doesn't feel reassuring right now. You feel like an absolute beta male tonight" << endl;
-  cout << "You go to mid town to forget your troubles. Unfortunately you get knocked out and thrown in some allyway. " << endl;
-  cout << "A sign that things are not currently in your favor!" << endl;
-  cout << endl;
+  std::cout << "Sometimes its worth taking risks if the rewards are high enough. Afterall," << std::endl;
+  std::cout << "all rich people have taken risks to get to where they are!" << std::endl;
+  std::cout << "However such thinking doesn't feel reassuring right now. You feel like an absolute beta male tonight" << std::endl;
+  std::cout << "You go to mid town to forget your troubles. Unfortunately you get knocked out and thrown in some allyway. " << std::endl;
+  std::cout << "A sign that things are not currently in your favor!" << std::endl;
+  std::cout << std::endl;
 }
 
 
@@ -165,10 +175,7 @@ void Story::neutralStory3(){
     std::cout << "Sometimes its worth taking risks if the rewards are high enough. Afterall," << std::endl;
     std::cout << "all rich people have taken risks to get to where they are!" << std::endl;
     std::cout << "It shouldn't be any differnt with you! You feel like an absolute alpha male tonight" << std::endl;
-    std::cout << "You go to mid
-
-
-    town and have the time of your life. You get absolutely wasted! " << std::endl;
+    std::cout << "You go to midtown and have the time of your life. You get absolutely wasted!" << std::endl;
     std::cout << std::endl;
 }
 //Partying
@@ -206,44 +213,11 @@ void Story::goodStory2(){
     std::cout << std::endl;
 }std::
 //plenty of cash
-void Story::goodStory3(){
-    std::cout << "You go home feeling like a champion. Your portfolio is going up!" << std::endl;
-    std::cout << "You go on a date with your true love to the Olive Garden" << std::endl;
-    std::cout << "Everything went as desired. When you recieve the bill you open your wallet" << std::endl;
-    std::cout << "to find plenty of cash. You tip the waitress good and go home satisfied." << std::endl;
-    std::cout << std::endl;
-}
-//Assets increase
-void Story::goodStory4(){
-    std::cout << "You go home unsure of the decisions you have made that day." << std::endl;
-    std::cout << "You have many concerns of how your assets will fair in the future." << std::endl;
-    std::cout << "You decide to watch the daily stocks report in attempts to reassure yourself." << std::endl;
-    std::cout << "Fortunately, your assets have only increased and will only continue to increase as expected." << std::endl;
-    std::cout << std::endl;
-}
-//Everyone adores your presence
-void Story::goodStory5(){
-    std::cout << "You feel quite satisfied with the decisions that you have made." << std::endl;
-    std::cout << "You feel that things could only go right for your current portfolio." << std::endl;
-    std::cout << "You decide to go to mid town to celebrate what seems to be assured gains" << std::endl;
-    std::cout << "Everyone adores your presence." << std::endl;
-    std::cout << std::endl;
-}
-
+//FIXME: Include good and very good stories
 //VERY GOOD STORIES
-//Feeling like royalty
-void Story::veryGoodStory1(){
-    std::cout << "You tell yourself, \"it's great to be rich!\" as you ride your jet ski on nitro along the shores of Fiji." << std::endl;
-    std::cout << "As you dry off on the beach beholding the awe inspiring sight of the beautiful sun set, you receive an anonymous phone call" << endl;
-    std::cout << "\"Congraulations! You are officially a millionare and have been invited into the millionaire’s club!\"" << std::endl;
-    std::cout << "Feeling like royalty, you then command your butler for more cavier. It simply cannot get any better than this! " << std::endl;
-    std::cout << std::endl;
-}
-
-//END GAME STORIES
 //Multi millionaire
 void Story::endStory1(){
-std::cout << "Congratulations " << name << "!"<< std::endl;
+std::cout << "Congratulations " << getName() << "!"<< std::endl;
 std::cout << "You have succeeded in making a large amount of profit." << std::endl;
 std::cout << "As a result, you have decided to celebrate by buying a Lamborghini and a mansion on the water in Miami." << std::endl;
 std::cout << "In addition, you invested the rest of your profits in a start-up that ended up exploding." << std::endl;
