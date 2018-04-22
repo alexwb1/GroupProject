@@ -31,12 +31,16 @@
  */
 
 #include <string>
+#include <iostream>
+#include <ctime>
+#include <random>
 
 class Story{
     private:
         //Not sure if we need any private variables
         std::string name; //Is the player's name
     public:
+    srand(time(NULL));
       Story(std::string name);
       std::string getName();
       int getWeeklyValue(int totalMoney, int percentIncrease); //gets value to get random story of week
@@ -90,8 +94,39 @@ Story::Story(std::string name){
 std::string Story::getName(){
     return name;
 }
-//VERY BAD
+//------------VERY BAD------------
 //Omen of something terrible
+void Story::veryBadStory(){ /*---Chooses 1 of 5 very bad stories-----*/
+    unsigned short int choice = (rand()%5)+1;
+    switch(choice){
+        case 1:{
+            Story::veryBadStory1();
+            break;
+        }
+        case 2:{
+            Story::veryBadStory2();
+            break;
+        }
+        case 3:{
+            Story::veryBadStory3();
+            break;
+        }
+        case 4:{
+            Story::veryBadStory4();
+            break;
+        }
+        case 5:{
+            Story::veryBadStory5();
+            break;
+        }
+        default:{
+            // this case should never ever happen.
+            std::cerr << "Problem with selecting a story...";
+            break;
+        }
+
+    }
+} //end the choosing method
 void Story::veryBadStory1(){
     std::cout << "You feel uneasy about the decisions you have made. There are many signs that you have picked up" << std::endl;
     std::cout << "that your portfolio is going to suffer some detrimental losts. You decide to avoid the thought." << std::endl;
@@ -136,8 +171,39 @@ void Story::veryBadStory5(){
     std::cout << std::endl;
 }
 
-//BAD STORIES
+//-------------BAD STORIES-----------------
 //word conufusion
+void Story::badStory(){ /*---Chooses 1 of 5 bad stories-----*/
+    unsigned short int choice = (rand()%5)+1;
+    switch(choice){
+        case 1:{
+            Story::badStory1();
+            break;
+        }
+        case 2:{
+            Story::badStory2();
+            break;
+        }
+        case 3:{
+            Story::badStory3();
+            break;
+        }
+        case 4:{
+            Story::badStory4();
+            break;
+        }
+        case 5:{
+            Story::badStory5();
+            break;
+        }
+        default:{
+            // this case should never ever happen.
+            std::cerr << "Problem with selecting a story...";
+            break;
+        }
+
+    }
+} //end the choosing method
 void Story::badStory1(){
     std::cout << "In hindsight, you feel you've tried your best in the decisions you have made today." << std::endl;
     std::cout << "Surely you will make great gains with such precise planning and utilization of logic. Surely?" << std::endl;
@@ -182,8 +248,39 @@ void Story::badStory5(){
 }
 
 
-//NEUTRAL STORIES
+//-----------------NEUTRAL STORIES----------
 //Player sleeps easy
+void Stroy::neutralStory(){ /*---Chooses 1 of 5 neutral stories-----*/
+    unsigned short int choice = (rand()%5)+1;
+    switch(choice){
+        case 1:{
+            Story::neutralStory1();
+            break;
+        }
+        case 2:{
+            Story::neutralStory2();
+            break;
+        }
+        case 3:{
+            Story::neutralStory3();
+            break;
+        }
+        case 4:{
+            Story::neutralStory4();
+            break;
+        }
+        case 5:{
+            Story::neutralStory5();
+            break;
+        }
+        default:{
+            // this case should never ever happen.
+            std::cerr << "Problem with selecting a story...";
+            break;
+        }
+
+    }
+} //end the choosing method
 void Story::neutralStory1(){
     std::cout << "In hindsight, you feel you've tried your best in the decisions you have made today." << std::endl;
     std::cout << "Surely you will make great gains with such precise planning and utilization of logic. Surely?" << std::endl;
@@ -225,8 +322,39 @@ void Story::neutralStory5(){
     std::cout << std::endl;
 }
 
-//GOOD STORIES
+//------------------GOOD STORIES---------------
 //Euphoric Light
+void Story::goodStory(){ /*---Chooses 1 of 5 good stories-----*/
+    unsigned short int choice = (rand()%5)+1;
+    switch(choice){
+        case 1:{
+            Story::goodStory1();
+            break;
+        }
+        case 2:{
+            Story::goodStory2();
+            break;
+        }
+        case 3:{
+            Story::goodStory3();
+            break;
+        }
+        case 4:{
+            Story::goodStory4();
+            break;
+        }
+        case 5:{
+            Story:goodStory5();
+            break;
+        }
+        default:{
+            // this case should never ever happen.
+            std::cerr << "Problem with selecting a story...";
+            break;
+        }
+
+    }
+} //end the choosing method
 void Story::goodStory1(){
     std::cout << "Today was a good day. Absolutely nothing could make it go wrong." << std::endl;
     std::cout << "You go home knowing that the universe is on your side. Atleast for the time being." << std::endl;
@@ -241,11 +369,75 @@ void Story::goodStory2(){
     std::cout << "It seems things are going your way today!" << std::endl;
     std::cout << "You were able to sleep easy that night knowing you have made gains." << std::endl;
     std::cout << std::endl;
-}std::
+}
 //plenty of cash
 //FIXME: Include good and very good stories
-//VERY GOOD STORIES
+//--------------VERY GOOD STORIES----------------------
+void Story::veryGoodStory(){ /*---Chooses 1 of 5 very good stories-----*/
+    unsigned short int choice = (rand()%5)+1;
+    switch(choice){
+        case 1:{
+            Story::veryGoodStory1();
+            break;
+        }
+        case 2:{
+            Story::veryGoodStory2();
+            break;
+        }
+        case 3:{
+            Story::veryGoodStory3();
+            break;
+        }
+        case 4:{
+            Story::veryGoodStory4();
+            break;
+        }
+        case 5:{
+            Story::veryGoodStory5();
+            break;
+        }
+        default:{
+            // this case should never ever happen.
+            std::cerr << "Problem with selecting a story...";
+            break;
+        }
+
+    }
+} //end the choosing method
 //Multi millionaire
+
+/*-------------Ending Stories-------------*/
+void Story::endingStory(){ /*---Chooses 1 of 5 ending stories-----*/
+    unsigned short int choice = (rand()%5)+1;
+    switch(choice){
+        case 1:{
+            Story::endingStory1();
+            break;
+        }
+        case 2:{
+            Story::endingStory2();
+            break;
+        }
+        case 3:{
+            Story::endingStory3();
+            break;
+        }
+        case 4:{
+            Story::endingStory4();
+            break;
+        }
+        case 5:{
+            Story::endingStory5();
+            break;
+        }
+        default:{
+            // this case should never ever happen.
+            std::cerr << "Problem with selecting a story...";
+            break;
+        }
+
+    }
+} //end the choosing method
 void Story::endStory1(){
 std::cout << "Congratulations " << getName() << "!"<< std::endl;
 std::cout << "You have succeeded in making a large amount of profit." << std::endl;
