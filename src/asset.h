@@ -5,9 +5,7 @@
 class Asset
 {
 	std::vector<int> prices; // vector to hold each day's price
-
     std::vector<int> purchases; // a vector containing the purchase history of this asset
-
 	std::string ticker; // string to hold the symbol of the stock
 
 	unsigned int quantity = 0; // int value representing how many shares are owned

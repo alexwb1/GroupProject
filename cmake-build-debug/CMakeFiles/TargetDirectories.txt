@@ -1,4 +1,0 @@
-/cygdrive/c/Users/seanb/source/COP3503/GroupProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/seanb/source/COP3503/GroupProject/cmake-build-debug/CMakeFiles/edit_cache.dir
-/cygdrive/c/Users/seanb/source/COP3503/GroupProject/cmake-build-debug/CMakeFiles/GroupProject.dir
-/cygdrive/c/Users/seanb/source/COP3503/GroupProject/cmake-build-debug/CMakeFiles/GameTest.dir
