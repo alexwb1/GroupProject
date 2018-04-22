@@ -429,16 +429,10 @@ void buyAssets(Game *g)
     stringstream converter;
 
     // print out the items currently in the user's portfolio
-    g->printPortfolio();
-
-    // if the number of assets in the user's porfolio is 0, return
-    if (g->getPortfolio().size() == 0)
-    {
-        return;
-    }
+    g->printAssets();
 
     // prompt the user for how many shares they would like to sell
-    cout << "Which of these assets would you like to sell?" << endl;
+    cout << "Which of these assets would you like to buy?" << endl;
 
     // read in the asset name from the user
     cin >> assetName;
@@ -446,22 +440,22 @@ void buyAssets(Game *g)
     // continue to prompt the user until they input a correct asset
     while (!g->containsAsset(assetName))
     {
-        g->printPortfolio();
+        g->printAssets();
         cout << "Please type the name of the asset exactly as it is displayed." << endl;
         cin >> assetName;
     }
 
-    // prompt the user about how many shares they would like to sell
-    cout << "How many shares of " << assetName << " do you want to sell? ";
-    cout << "You can sell a maximum of " << g->getNumShares(assetName) << " shares." << endl;
+    // prompt the user about how many shares they would like to buy
+    cout << "How many shares of " << assetName << " do you want to buy? ";
+    cout << "You can buy a maximum of " << g->getBuyingPower(assetName) << " shares." << endl;
 
     // read the users input convert it to an integer
     cin >> numAssets;
     converter << numAssets;
     converter >> n;
 
-    // continually ask the user for the number of shares they would like to sell until good input is given
-    while (!all_of(numAssets.begin(), numAssets.end(), ::isdigit) || g->getNumShares(assetName) < n)
+    // continually ask the user for the number of shares they would like to buy until good input is given
+    while (!all_of(numAssets.begin(), numAssets.end(), ::isdigit))
     {
         cout << "Please enter an integer between 0 and " << g->getNumShares(assetName) << endl;
         converter.clear();
@@ -470,12 +464,8 @@ void buyAssets(Game *g)
         converter >> n;
     }
 
-    // sell the asset
-    g->sellAsset(assetName, n);
-
-    // print how many shares have been sold
-    cout << "You have sold " << numAssets << " shares of " << assetName << "." << endl;
-    cout << endl;
+    // buy the asset
+    g->buyAsset(assetName, n);
 }
 
 // Definition of game play methods
@@ -582,31 +572,36 @@ void modifyInvestment(Game *g)
     cout << endl;
     cout << "What action would you like to take? (Please enter an integer of value 1 - 3)" << endl;
 
-    //
+    // reads in user input until the given input is well formed
     while (cin >> decision)
     {
         if (decision == "1")
         {
+            // the user chooses to buy assets
             buyAssets(g);
             break;
         }
         else if (decision == "2")
         {
+            // the user chooses to sell assets
             sellAssets(g);
             break;
         }
         else if (decision == "3")
         {
+            // the users chooses to cancel
             break;
         }
         else
         {
+            // reprompts the user when input is bad
             cout << "Please enter an integer 1-5 make a decision." << endl;
             cout << "1. Buy" << endl;
             cout << "2. Sell" << endl;
             cout << "3. No action" << endl;
         }
     }
+    cout << endl;
 }
 
 // prints advice about a specific asset
