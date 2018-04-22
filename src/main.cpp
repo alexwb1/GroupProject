@@ -346,7 +346,7 @@ void getAdvice(Game *g, int weekNum){
   cin >> asset;
 
   // output the users advice
-  cout << g->getAdvise(asset, weekNum) << endl;
+  cout << g->getAdvice(asset, weekNum) << endl;
 }
 bool endOfWeek(){
     return true;
