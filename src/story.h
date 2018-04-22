@@ -49,7 +49,14 @@ void Story::badstory2(){
     cout << "You couldn't sleep that night knowing money has been lost." << endl;
     cout << endl;
 }
-
+void Story::badstory3(){
+    cout << "You go home feeling confident that your assets will experience a moon today" << endl;
+    cout << "You notice a black cat pass by you before coming home and start to feel unsure" << endl;
+    cout << "Nervous and anxious, you turn on the daily stocks report and watch in absolute horror." << endl;
+    cout << "Apparently a group of whales have dumped the assets in your portfolio!" << endl;
+    cout << "You turn off the television in absolute denial and hope your portfolio will be untouched by this turn of events." << endl;
+    cout << endl;
+}
 //NEUTRAL STORIES
 void Story::neutralStory1(){
     cout << "In hindsight, you feel you've tried your best in the decisions you have made today." << endl;
