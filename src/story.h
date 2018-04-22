@@ -99,3 +99,37 @@ void Story::veryGoodStory1(){
     cout << "Feeling like royalty, you then command your butler for more cavier. It simply cannot get any better than this! " << endl;
     cout << endl;
 }
+
+//Story at end of Game
+void Story::endStory1(){
+cout << "Congratulations!" << endl;
+cout << "You have succeeded in making a large amount of profit." << endl;
+cout << "As a result, you have decided to celebrate by buying a Lamborghini and a mansion on the water in Miami." << endl;
+cout << "In addition, you invested the rest of your profits in a start-up that ended up exploding." << endl;
+cout << "You are now a multi-millionaire and will live the rest of your life comfort." << endl;
+}
+
+void Story::endStory2(){
+cout << "Although you did not become rich from the stock market, at least you made a decent amount of profit." << endl;
+cout << "You decided to take your wife on vacation to Spain." << endl;
+cout << "Additionally, your success in the market lead to increased confidence in the office, which resulted in a promotion." << endl;
+cout << "Overall, you are happy with the results of your investments." << endl;
+}
+
+void Story::endStory3(){
+cout << "You didn’t make any profit, but at least you didn’t loose any either." << endl;
+cout << "You spent the last few months investing the majority of your time analyzing and investing in the stock market." << endl;
+cout << "You got angry because you feel like you wasted your time, but your therapist advised you to start meditating." << endl;
+cout << "You decided to might as well try at the market again, and hopefully make a profit the next time." << endl;
+}
+
+void Story::endStory4(){
+cout << "Just like the majority of other novice investors, you ended up loosing a small amount of money." << endl;
+cout << "Although you are angry that you don’t get to go on vacation any more, you are also thankful to not have lost your entire investment." << endl;
+cout << "At the end of day, this experience was valuable to you, and you hope to use your new investing knowledge to make money in the future." << endl;
+
+void Story::endStory5(){
+cout << "You have very bad luck! You lost the majority of your investment." << endl;
+cout << "When your wife found out you lost all the money, she decided to divorce you." << endl;
+cout << "In addition, you lost your job due to recent depression." << endl;
+cout << "Even though you lost everything that was important to you, at least you learned a valuable lesson… invest intelligently!" << endl;
