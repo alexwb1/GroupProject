@@ -84,7 +84,7 @@ int main()
         }
         
 		
-		g->nextWeek()
+		g->nextWeek();
 		
         //TODO: nextWeek(); Increments the week in game class
         cout << "we are now on week " << g->getWeek << "\n" << endl; //FIXME: delete later
