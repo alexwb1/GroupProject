@@ -54,6 +54,7 @@ public:
     void printPortfolio();
     bool containsAsset(std::string assetName);
     int getBuyingPower(std::string assetName);
+    int getNumShares(std::string assetName);
 
     std::string* printAd(std::string &asset); // returns a string representing advice from the adviser
 
@@ -102,7 +103,14 @@ bool Game::nextWeek()
 
     if (week <= FINAL_WEEK) {
         week++;
-        capital -= adviser->getFee();
+        if (adviser->getFee() >= capital)
+        {
+            capital = 0;
+        }
+        else
+        {
+            capital -= adviser->getFee();
+        }
         return true;
     }
     else {
@@ -180,8 +188,9 @@ bool Game::buyAsset(const std::string &name, unsigned int quantity)
                 std::cout << "You do not have enough money to buy those shares.\n" << std::endl;
                 return false;
             }
-            else {
-                capital -= assets[i].buy(quantity, week);
+            else
+            {
+                capital -= assets[i].buy(quantity, week) + brokerage->getFee();
                 std::cout << "You successfully purchased " << quantity << " shares of " << name << std::endl;
                 return true;
             }
@@ -197,11 +206,11 @@ bool Game::sellAsset(const std::string &name, unsigned int quantity)
         {
             if (quantity > a.getQuantity())
             {
-                std::cout << a.getTicker()  << " has " << a.getQuantity() << " shares"<< std::endl;
+                std::cout << "You only own " << a.getQuantity() << " shares of " << a.getTicker() << std::endl;
                 return false;
             }
             else {
-                capital += a.sell(quantity, week);
+                capital += a.sell(quantity, week) - brokerage->getFee();
                 return true;
             }
         }
@@ -326,7 +335,6 @@ std::vector<Asset> Game::getAssets()
 //Print Functions
 void Game::printBrokerages()
 {
-    std::cout << std::endl;
     for (int i = 0; i < brokerages.size(); ++i){
         std::cout << "Brokerage " << i+1 << ": " << brokerages[i].getName() << std::endl;
     }
@@ -334,7 +342,6 @@ void Game::printBrokerages()
 }
 void Game::printAdvisers()
 {
-    std::cout << std::endl;
     for (int i = 0; i < advisers.size(); ++i){
         std::cout << "Adviser " << i+1 << ": " << advisers[i].getName() << std::endl;
     }
@@ -342,7 +349,6 @@ void Game::printAdvisers()
 }
 void Game::printAssets()
 {
-    std::cout << std::endl;
     for(int i = 0; i < assets.size(); ++i){
         std::cout << "Asset " << i+1 << ": " << assets[i].getTicker() << " - $ " << assets[i].getPriceAtWeek(week) << std::endl;
     }
@@ -351,12 +357,19 @@ void Game::printAssets()
 
 void Game::printPortfolio()
 {
-  std::vector<Asset> portfolio = getPortfolio();
-  std::cout << std::endl;
-  for(int i = 0; i < portfolio.size(); ++i){
-      std::cout << "Asset " << i+1 << ": " << portfolio[i].getTicker() << " - " << portfolio[i].getQuantity() << std::endl;
-  }
-  std::cout << std::endl;
+    int count = 0;
+    std::vector<Asset> portfolio = getPortfolio();
+    std::cout << std::endl;
+    for(int i = 0; i < portfolio.size(); ++i)
+    {
+        std::cout << "Asset " << i+1 << ": " << portfolio[i].getTicker() << " - " << portfolio[i].getQuantity() << std::endl;
+        count++;
+    }
+    if (!count)
+    {
+        std::cout << "You have no owned assets." << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 bool Game::containsAsset(std::string assetName)
@@ -384,6 +397,22 @@ int Game::getBuyingPower(std::string assetName)
         {
             int buyingPower = capital / assets[i].getPriceAtWeek(week);
             return buyingPower;
+        }
+    }
+    // if none of the assets match, return false
+    return -1;
+}
+
+int Game::getNumShares(std::string assetName)
+{
+    // iterates over the assets object
+    for (int i = 0; i < assets.size(); i++)
+    {
+        // if the assetName matches one of the assets, return the number of shares that can be purchased
+        if (assets[i].getTicker() == assetName)
+        {
+            int numShares = assets[i].getQuantity();
+            return numShares;
         }
     }
     // if none of the assets match, return false
