@@ -14,6 +14,8 @@ class Game
     std::vector<Adviser> advisers; // vector that contains a list of available assets
     std::vector<Asset> assets; // vector that contains a list of available assets
 
+	std::vector<double> moneyHistory; // vector to contain history week by week of total money
+	
     Brokerage *brokerage; // pointer to the brokerage that the user chose
     Adviser *adviser; // pointer to the adviser that the user chose
 
@@ -52,6 +54,8 @@ public:
 
     std::string getAdvice(std::string asset, int weekNum; // returns a string representing advice from the adviser
 
+	double getTotalMoney(); // returns sum of capital and monetary value of investments
+	
 private:
 
     std::vector<Brokerage> loadBrokerages(const std::string &filename);
@@ -71,9 +75,29 @@ Game::Game(int initialCapital, std::string name)
     this->assets = loadAssets("../data/assets.txt");
 }
 
+double Game::getTotalMoney()
+{
+	double equity = capital;
+    std::vector<Asset> portfolio = getPortfolio();
+
+    
+    for (auto &a : portfolio)
+    {
+        if(a.getQuantity() != 0)
+        {
+            equity = equity + a.getQuantity()*a.getPriceAtWeek(week);
+        }
+    }
+	
+	return equity;
+}
+
 bool Game::nextWeek()
 {
-    if (week < FINAL_WEEK) {
+	
+	moneyHistory.push_back(getTotalMoney);
+	
+    if (week <= FINAL_WEEK) {
         week++;
         capital -= adviser->getFee(); //Applies weekly adviser fee
         return true;
