@@ -53,7 +53,7 @@ int main()
     int userDecision;
 
     //Loop through 6 months done weekly (24 weeks)
-    while(g->getWeek() < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
+    while(i < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
         endWeek = false;
         decisionTime = 6; //Gives the user a maximum of 6 decisions per day
         while(!endWeek && decisionTime > 0) {
@@ -82,16 +82,13 @@ int main()
             }
 
         }
-        
-		
-		g->nextWeek();
-		
+        ++i;
         //TODO: nextWeek(); Increments the week in game class
-        cout << "we are now on week " << g->getWeek() << "\n" << endl; //FIXME: delete later
+        cout << "we are now on week " << i << "\n" << endl; //FIXME: delete later
         //TODO: explainHowWeekWent(); Gives a short story about the week based on financial outcomes
         //TODO: suggestionForNextWeek(); Gives an inner dialogue on what could be done for better financial outcome
     }
-    //TODO: Create a means of summarizing the events of all 26 weeks. 
+    //TODO: Create a means of summarizing the events of all 26 weeks.
 	cout << "Finished main" << endl;
 	return 0;
 }
@@ -343,7 +340,13 @@ void modifyInvestment(Game *g){
     }
 }
 void getAdvice(Game *g, int weekNum){
+  // prompt the user about which asset they would like to get advice about
+  cout << "Which asset would you like to get advice on?" << endl;
+  std::string asset;
+  cin >> asset;
 
+  // output the users advice
+  cout << g->getAdvise(asset, weekNum) << endl;
 }
 bool endOfWeek(){
     return true;
