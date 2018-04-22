@@ -476,10 +476,10 @@ void Story::veryGoodStory5(){
     std::cout << "Everyone talks about how amazing and beautiful you are, and you just continue to buy more stuff in expensive stores."
                  "You buy an exotic car, an exotic pet, and million-dollar watch that can tell you what time it is." << std::endl;
     std::cout << "You also throw crazy parties and invite hundreds of people, and provide an open bar." << std::endl;
-    std::cout << "Your life becomes a TV reality show, and suddenly everyone in the world cares about all of your"
+    std::cout << "Your life becomes a TV reality show, and suddenly everyone in the world cares about all of your" 
                  "life's most trivial matters." << std::endl;
     std::cout << "" << std::endl;
-} 
+}
 
 /*-------------Ending Stories-------------*/
 void Story::endingStory(){ /*---Chooses 1 of 5 ending stories-----*/
