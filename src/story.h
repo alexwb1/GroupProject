@@ -479,7 +479,7 @@ void Story::veryGoodStory5(){
     std::cout << "Your life becomes a TV reality show, and suddenly everyone in the world cares about all of your"
                  "life's most trivial matters." << std::endl;
     std::cout << "" << std::endl;
-}
+} 
 
 /*-------------Ending Stories-------------*/
 void Story::endingStory(){ /*---Chooses 1 of 5 ending stories-----*/
