@@ -9,6 +9,7 @@ bool playGame();
 string userName();
 int wheel();
 string prizeSetter(int prizeNumber);
+
 //Week 0 methods
 void promptBrokerage(Game *g);
 void promptAdviser(Game *g);
@@ -26,27 +27,30 @@ bool endOfWeek();
 
 int main()
 {
-    string name; //name of user
-    bool game; //does the user decide to play?
+    string name;
+    bool game;
     int startingAmount;
-    //welcomeMessage();
-    //game = playGame();//FIXME: Works, just commented out for testing
-    game = true;
+    welcomeMessage();
+    game = playGame();
     if (game == false){
         cout << "You chose not to play Asset Management Simulator." <<endl;
         return 0;
     }
-    //name = userName();//FIXME: Works, just commented out for testing
-    name = "sean";
+
+    // sets up game object
+    name = userName();
     startingAmount = wheel();
     Game *g = new Game(startingAmount,name);
+
+    // prints user's starting capital
     cout << "Your starting capital is: "<<g->getCapital() << endl;
-    //promptBrokerage(g);//FIXME: Works, just commented out for testing
-    g->setBrokerage("Ally Investments"); //DELETE
-    //promptAdviser(g);//FIXME: Works, just commented out for testing
-    g->setAdviser("Theodore Warner");//DELETE
-    //promptAssets(g);//FIXME: Works, just commented out for testing
-    g->buyAsset("OIL", 1); //FIXME: Mitchell is on the case
+
+    // prompts the user to set up their portfolio and other game options
+    promptBrokerage(g);
+    promptAdviser(g);
+    promptAssets(g);
+
+
     cout << "You now have: " << g->getCapital() << " Money\n" << endl;
 
     int decisionTime;
@@ -92,29 +96,30 @@ int main()
 
 //prints message to explain game
 void welcomeMessage(){
-    cout << "Welcome to Asset Management Simulator\n" << endl;
-    cout << "Today, you will learn how to do the following:" << endl;
+    cout << "Welcome to Asset Management Simulator" << endl << endl;
+    cout << "Today, you will learn how to do the following:" << endl << endl;
     cout << "    1. Choose a financial adviser." << endl;
     cout << "    2. Choose assets to invest in." << endl;
     cout << "    3. Choose a brokerage to work with." << endl;
-    cout << "    4. Manage funds over a long period of time." << endl;
+    cout << "    4. Manage funds over a long period of time." << endl << endl;
 }
 //User decides to play the game (or not)
 bool playGame(){
-    string decision;
-    int playGame;
-    cout << "Would you like to learn these things? (Type 0 for NO and 1 for YES)" << endl;
-    getline(cin, decision);
-    while(true) {
-        if (decision == "YES") {
+    int decision;
+    bool playGame = false;
+    cout << "Would you like to learn these things? (Type 1 for 'Yes' or 0 for 'No')" << endl;
+    cin >> decision;
+    while (true) {
+        if (decision) {
             playGame = true;
             break;
-        } else if (decision == "NO") {
+        } else if (!decision) {
             playGame = false;
             break;
         }
         else{
-            cout << "Please insert 0 to quit, or insert 1 to play" << endl;
+            cout << "Please type 1 for 'Yes' or 0 for 'No'" << endl;
+            cin >> decision;
             continue;
         }
     }
