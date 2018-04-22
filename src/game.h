@@ -171,11 +171,6 @@ bool Game::setAdviser(const std::string &name)
 
 bool Game::buyAsset(const std::string &name, unsigned int quantity)
 {
-    std::string userIn;
-    std::cout << "How many shares of " << name << " would you like to purchase: ";
-    std::cin >> userIn;
-    quantity = std::stoi(userIn);
-
     for (int i = 0; i < assets.size(); i++)
     {
         if (assets[i].getTicker() == name)
@@ -348,7 +343,7 @@ void Game::printAssets()
 {
     std::cout << std::endl;
     for(int i = 0; i < assets.size(); ++i){
-        std::cout << "Asset " << i+1 << ": " << assets[i].getTicker() << std::endl;
+        std::cout << "Asset " << i+1 << ": " << assets[i].getTicker() << " - $ " << assets[i].getPriceAtWeek(week) << std::endl;
     }
     std::cout << std::endl;
 }
