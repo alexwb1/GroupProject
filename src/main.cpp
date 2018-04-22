@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstring>
+#include <climits>
+#include <algorithm>
 #include "game.h"
 using namespace std;
 
@@ -7,6 +9,7 @@ using namespace std;
 void welcomeMessage();
 bool playGame();
 string userName();
+int promptInitialCapital(string name);
 int wheel();
 string prizeSetter(int prizeNumber);
 
@@ -30,23 +33,33 @@ int main()
     string name; // a string value representing the user's name
     bool game; // a boolean value representing if the user wants to play
     int startingAmount; // an int value representing the starting amount of money that a player has
+
+    // prints out a welcome message to the user and asks if the user would like to play
     welcomeMessage();
     game = playGame();
 
-    // if the user decides not to play the game
-    if (game == false)
+    // if the user decides not to play the game, close the game
+    if (!game)
     {
         cout << "You chose not to play Asset Management Simulator." <<endl;
         return 0;
     }
+    // if the user decides to play, say thanks
+    else
+    {
+      cout << "Thanks for choosing to play Asset Management Simulator" << endl;
+      cout << "Let's get started." << endl;
+      cout << endl;
+    }
 
-    // sets up game object
+    // sets up game object with a random starting capital and the user's name
     name = userName();
-    startingAmount = wheel();
-    Game *g = new Game(startingAmount,name);
+    startingAmount = promptInitialCapital(name);
+    Game *g = new Game(startingAmount, name);
 
     // prints user's starting capital
-    cout << "Your starting capital is: "<<g->getCapital() << endl;
+    cout << "Your starting capital is: $" << g->getCapital() << endl;
+    cout << endl;
 
     // prompts the user to set up their portfolio and other game options
     promptBrokerage(g);
@@ -98,9 +111,10 @@ int main()
 	return 0;
 }
 
-//prints message to explain game
+//prints message to explain the game
 void welcomeMessage()
 {
+    cout << endl;
     cout << "Welcome to Asset Management Simulator" << endl << endl;
     cout << "Today, you have the opportunity to learn how to do the following:" << endl << endl;
     cout << "    1. Choose a financial adviser." << endl;
@@ -112,121 +126,227 @@ void welcomeMessage()
 // prompts the user to decide if they would like to play
 bool playGame()
 {
-    int decision;
+    // prompts the user asking if they would like to play the game
+    string decision;
     bool playGame = false;
     cout << "Would you like to learn these things? (Type 1 for 'Yes' or 0 for 'No')" << endl;
     cin >> decision;
-    while (true) {
-        if (decision) {
+
+    // evaluates the user's decision
+    while (true)
+    {
+        if (decision == "1")
+        {
             playGame = true;
             break;
-        } else if (!decision) {
+        }
+        else if (decision == "0")
+        {
             playGame = false;
             break;
         }
-        else{
+        else
+        {
+            // if the input is neither 1 nor 0, prompt the user again
             cout << "Please type 1 for 'Yes' or 0 for 'No'" << endl;
             cin >> decision;
             continue;
         }
     }
+    cout << endl;
     return playGame;
 }
 // gets user's name for use in Game creation
 string userName()
 {
-    cout << "Thanks for choosing to play Asset Management Simulator.\nLets get started.\n" << endl;
-    cout << "What is your name?" << endl;
+    // prints out initial question asking for user's name
+    cout << "What is your name? (Please enter first name only)" << endl;
+
+    // reads and returns the user's input
     string name;
     cin >> name;
-    cout << endl << endl;
-    cout << "Hello " << name << ". Lets go ahead and pick your brokerage, adviser, and assets." << endl;
+    cin.clear();
+    cout << endl;
     return name;
 }
 
+int promptInitialCapital(string name)
+{
+    // prompt the user for how he would like to determine his money
+    cout << "Hello " << name << "!" << endl;
+    cout << "How would you like to determine your initial capital? (Please enter an integer 1 or 2)" << endl << endl;
+    cout << "1. I'll choose myself. Why the hell wouldn't I?" << endl;
+    cout << "2. Let me spin the Wheel of Small Loans." << endl;
 
-// FIXME: must change to a getLine() for user input.
-// prints the name of Brokerages and lets the user pick one.
+    // read in the user's decision
+    string decision;
+    cin >> decision;
+
+    // evaluate the user's decision
+    while (true)
+    {
+        if (decision == "1")
+        {
+            // prompt the user for how much money they would like
+            cout << "How much money would like to begin the game with? (Please enter an integer value)" << endl;
+
+            // read in and return the user-chosen starting capital
+            string initialCapital;
+            cin >> initialCapital;
+            while (!all_of(initialCapital.begin(), initialCapital.end(), ::isdigit))
+            {
+                cout << "Please enter an integer value greater than 0" << endl;
+                cin.clear();
+                cin >> initialCapital;
+            }
+
+            // convert the string value to an int
+            int c = 0;
+            stringstream ss;
+            ss << initialCapital;
+            ss >> c;
+            return c;
+        }
+        else if (decision == "2")
+        {
+            // spin the Wheel of Small Loans
+            return wheel();
+        }
+        else
+        {
+            // if the user does not enter a valid option, prompt again
+            cout << "Please enter an integer value 1 or 2" << endl;
+            cin >> decision;
+        }
+    }
+}
+
+// prints the name of brokerages and lets the user pick one.
 void promptBrokerage(Game *g)
 {
+    // initializes necessary variables
     bool chooseB = false;
     string brokerageName;
-    cout << "\nWhich of these brokerages would you like to use?" << endl;
+
+    // prints out the options for the user
+    cout << "Which of these brokerages would you like to use?" << endl;
     g->printBrokerages();
-    while (!chooseB){
-        getline(cin, brokerageName);
+
+    // begins loop to ensure that the user entered well formed input
+    while (!chooseB)
+    {
+        // clears cin and attempts to read in the user's input
+        cin.clear();
+        cin >> brokerageName;
+
+        // attempts to choose the brokerage; chooseB is true if successfully chose, false otherwise
         chooseB = g->setBrokerage(brokerageName);
-        if (chooseB == false){
-            cout << "\nPlease type the name of the brokerage exactly as it is displayed." << endl;
+
+        // if the user entered malformed input, the user is prompted again
+        if (!chooseB)
+        {
+            cout << endl;
+            cout << "Please type the name of the brokerage exactly as it is displayed." << endl;
             g->printBrokerages();
         }
     }
     cout << "Thanks for choosing " << brokerageName << " as your brokerage.\n" << endl;
+    cin.clear();
+    cout << endl;
 }
 
 // prints the name of the Advisers and lets the user pick one.
 void promptAdviser(Game *g)
 {
+    // initializes necessary variables
     bool chooseA = false;
     string adviserName;
-    cout << "\nWhich of these Advisers would you like to work with?" << endl;
+
+    // prints out the prompt to the user and the list of advisers that can be chosen
+    cout << "Which of these advisers would you like to work with?" << endl;
     g->printAdvisers();
-    while (!chooseA){
-        getline(cin, adviserName);
-        chooseA = g->setAdviser(adviserName); //FIXME: Ally Invest doesn't work
-        if (chooseA == false){
-            cout << "\nPlease type the name of the brokerage exactly as it is displayed." << endl;
+
+    // begins loop to ensure that a proper selection is made
+    while (!chooseA)
+    {
+        // reads in the user's input and attempts to choose the advise
+        cin >> adviserName;
+        chooseA = g->setAdviser(adviserName);
+
+        // if the adviser was not properly selected, then the user is prompted again
+        if (!chooseA)
+        {
+            cout << endl;
+            cout << "Please type the name of the adviser's name exactly as it is displayed." << endl;
             g->printAdvisers();
         }
     }
     cout << "Thanks for choosing " << adviserName << " as your adviser.";
+    cin.clear();
+    cout << endl;
 }
 // prints the name of the Advisers and lets the user pick one.
-void promptAssets(Game *g)
-{
-    bool chooseAs = false;
+void promptAssets(Game *g) {
+    // initializes necessary variables
+    bool chosen = false;
+    bool finished = false;
     string assetName;
-    int numAssets;
-    cout << "\nWhich of these assets are you interested in?" << endl;
-    g->printAssets();
-    while (!chooseAs) {
-        //getline(cin, assetName); FIXME: Wasnt working on Sean's IDE
-        cin >> assetName;
-        chooseAs = g->buyAsset(assetName, 1);
-        if (chooseAs == false) {
-            cout << "Please type the name of the asset exactly as it is displayed." << endl;
+    string buy;
+    string quantity;
+    int q;
+
+
+    // begins loop to buy multiple assets
+    while (!finished) {
+        // prompts the user if they would like to buy an asset
+        cout << "Would you like to buy an asset? (Enter 1 for 'Yes' and 0 for 'No')" << endl;
+        cin >> buy;
+        if (buy == "1")
+        {
+            // prints out the prompt and a list of the available assets that a user can buy
+            cout << "Which of these assets would you like to buy?" << endl;
             g->printAssets();
+
+            // reads in the user's input and attempts to choose the advise
+            cin >> assetName;
+            cin.clear();
+
+            // while loop ensures that a proper asset name is chosen
+            while (!g->containsAsset(assetName)) {
+                g->printAssets();
+                cout << endl;
+                cout << "Please enter the asset exactly as it appears above." << endl;
+                cin >> assetName;
+            }
+
+            // prompts the user by asking how many shares they would like to buy and reads in the input
+            cout << "How many shares of " << assetName << " would you like to buy?" << endl;
+            cout << "You can buy a maximum of " << g->getBuyingPower(assetName) << " shares." << endl;
+            cin >> quantity;
+
+            // convert to quantity to integer
+            stringstream convert;
+            convert << quantity;
+            convert >> q;
+
+            // while loop ensures that an integer was given and that the int is valid
+            while (!all_of(quantity.begin(), quantity.end(), ::isdigit) && g->getBuyingPower(assetName) <= q)
+            {
+                cout << "Please enter a valid integer number " << endl;
+                cout << "You can buy a maximum of " << g->getBuyingPower(assetName) << " shares." << endl;
+                cin >> quantity;
+
+                // convert to quantity to integer
+                convert << quantity;
+                convert >> q;
+            }
+        }
+        else if (buy == "0")
+        {
+
+
         }
     }
-    cout << "Thank you for choosing " << assetName << ", it has been added to your portfolio." << endl;
-//FIXME: Make into its own method so the user can add an asset at any time during the week
-//    bool chooseAssRepeatLoop = false;
-//
-//    while (!chooseAssRepeatLoop) {
-//
-//        cout << "Are you interested in another asset? Yes or No?" << endl;
-//        string userInput;
-//        cin << userInput;
-//
-//        if ((userInput == "Yes") || (userInput == "yes")){
-//            cout << "\nWhich of these assets are you interested in?" << endl;
-//            g->printAssets(g->getAssets());
-//            while (!chooseAssRepeatLoop) {
-//                cin >> assetName;
-//                chooseAssRepeatLoop = g->setAsset(assetName);
-//                if (chooseAssRepeatLoop == false) {
-//                    cout << "Please type the name of the asset exactly as it is displayed." << endl;
-//                    g->printAsset(g->getAssets());
-//                }
-//            }
-//        }
-//        else if (((userInput == "No") || (userInput == "no"))){
-//            chooseAssRepeatLoop = true;
-//        }
-//        else {
-//            cout << "Incorrect user input."  << endl;
-//        }
-//    }
 }
 
 // prompts the user to sell assets
@@ -243,7 +363,7 @@ void sellAssets(Game *g)
         cout << "How many shares of " << assetName << " do you want to sell?" << endl;
         cin >> numAssets; // FIXME: make sure there is no input error
         chooseAs = g->sellAsset(assetName, numAssets);
-        if (chooseAs == false) {
+        if (!chooseAs) {
             cout << "Please type the name of the asset exactly as it is displayed." << endl;
             g->printPortfolio();
         }

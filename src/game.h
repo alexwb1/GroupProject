@@ -52,6 +52,8 @@ public:
     std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
     void printAssets();
     void printPortfolio();
+    bool containsAsset(std::string assetName);
+    int getBuyingPower(std::string assetName);
 
     std::string* printAd(std::string &asset); // returns a string representing advice from the adviser
 
@@ -167,10 +169,10 @@ bool Game::setAdviser(const std::string &name)
     return false;
 }
 
-bool Game::buyAsset(const std::string &name, unsigned int quantity) {
+bool Game::buyAsset(const std::string &name, unsigned int quantity)
+{
     std::string userIn;
     std::cout << "How many shares of " << name << " would you like to purchase: ";
-    //std::getline(std::cin, userIn);
     std::cin >> userIn;
     quantity = std::stoi(userIn);
 
@@ -192,7 +194,8 @@ bool Game::buyAsset(const std::string &name, unsigned int quantity) {
     return true;
 
 }
-bool Game::sellAsset(const std::string &name, unsigned int quantity) {
+bool Game::sellAsset(const std::string &name, unsigned int quantity)
+{
     for (auto &a : assets) {
         if (a.getTicker() == name)
         {
@@ -209,7 +212,8 @@ bool Game::sellAsset(const std::string &name, unsigned int quantity) {
     }
 }
 
-std::string* Game::printAd(std::string &asset) {
+std::string* Game::printAd(std::string &asset)
+{
     Asset *a = nullptr;
     for (int i = 0; i < assets.size(); i++) {
         if (assets[i].getTicker() == asset) {
@@ -219,7 +223,8 @@ std::string* Game::printAd(std::string &asset) {
     }
     return adviser->getAdvice(a, 0);
 }
-std::vector<Asset> Game::getPortfolio() {
+std::vector<Asset> Game::getPortfolio()
+{
     std::vector<Asset> portfolio;
     for (auto &a : assets)
     {
@@ -232,7 +237,8 @@ std::vector<Asset> Game::getPortfolio() {
 }
 
 //Read Game Contents from txt files
-std::vector<Brokerage> Game::loadBrokerages(const std::string &filename) {
+std::vector<Brokerage> Game::loadBrokerages(const std::string &filename)
+{
     std::vector<Brokerage> b;
     std::string line;
     std::ifstream file(filename);
@@ -250,7 +256,8 @@ std::vector<Brokerage> Game::loadBrokerages(const std::string &filename) {
 
     return b;
 }
-std::vector<Adviser> Game::loadAdvisers(const std::string &filename) {
+std::vector<Adviser> Game::loadAdvisers(const std::string &filename)
+{
     std::vector<Adviser> a;
     std::string line;
     std::ifstream file(filename);
@@ -268,7 +275,8 @@ std::vector<Adviser> Game::loadAdvisers(const std::string &filename) {
 
     return a;
 }
-std::vector<Asset> Game::loadAssets(const std::string &filename) {
+std::vector<Asset> Game::loadAssets(const std::string &filename)
+{
     std::vector<Asset> a;
     std::string line;
     std::ifstream file(filename);
@@ -306,32 +314,38 @@ std::vector<Asset> Game::loadAssets(const std::string &filename) {
 
 
 //Getters for game components
-std::vector<Brokerage> Game::getBrokerages() {
+std::vector<Brokerage> Game::getBrokerages()
+{
     return brokerages;
 }
-std::vector<Adviser> Game::getAdvisers() {
+std::vector<Adviser> Game::getAdvisers()
+{
     return advisers;
 }
-std::vector<Asset> Game::getAssets() {
+std::vector<Asset> Game::getAssets()
+{
     return assets;
 }
 
 //Print Functions
-void Game::printBrokerages(){
+void Game::printBrokerages()
+{
     std::cout << std::endl;
     for (int i = 0; i < brokerages.size(); ++i){
         std::cout << "Brokerage " << i+1 << ": " << brokerages[i].getName() << std::endl;
     }
     std::cout << std::endl;
 }
-void Game::printAdvisers(){
+void Game::printAdvisers()
+{
     std::cout << std::endl;
     for (int i = 0; i < advisers.size(); ++i){
         std::cout << "Adviser " << i+1 << ": " << advisers[i].getName() << std::endl;
     }
     std::cout << std::endl;
 }
-void Game::printAssets(){
+void Game::printAssets()
+{
     std::cout << std::endl;
     for(int i = 0; i < assets.size(); ++i){
         std::cout << "Asset " << i+1 << ": " << assets[i].getTicker() << std::endl;
@@ -339,11 +353,43 @@ void Game::printAssets(){
     std::cout << std::endl;
 }
 
-void Game::printPortfolio() {
+void Game::printPortfolio()
+{
   std::vector<Asset> portfolio = getPortfolio();
   std::cout << std::endl;
   for(int i = 0; i < portfolio.size(); ++i){
       std::cout << "Asset " << i+1 << ": " << portfolio[i].getTicker() << " - " << portfolio[i].getQuantity() << std::endl;
   }
   std::cout << std::endl;
+}
+
+bool Game::containsAsset(std::string assetName)
+{
+    // iterates over the assets object
+    for (int i = 0; i < assets.size(); i++)
+    {
+        // if the assetName matches one of the assets, return true
+        if (assets[i].getTicker() == assetName)
+        {
+            return true;
+        }
+    }
+    // if none of the assets match, return false
+    return false;
+}
+
+int Game::getBuyingPower(std::string assetName)
+{
+    // iterates over the assets object
+    for (int i = 0; i < assets.size(); i++)
+    {
+        // if the assetName matches one of the assets, return the number of shares that can be purchased
+        if (assets[i].getTicker() == assetName)
+        {
+            int buyingPower = capital / assets[i].getPriceAtWeek(week);
+            return buyingPower;
+        }
+    }
+    // if none of the assets match, return false
+    return -1;
 }
