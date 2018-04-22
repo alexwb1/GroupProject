@@ -53,7 +53,7 @@ int main()
     int userDecision;
 
     //Loop through 6 months done weekly (24 weeks)
-    while(i < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
+    while(g->getWeek() < g->getFinalWeek() && game == true) {//Ends game when user chooses to quit or when time is up
         endWeek = false;
         decisionTime = 6; //Gives the user a maximum of 6 decisions per day
         while(!endWeek && decisionTime > 0) {
@@ -71,7 +71,7 @@ int main()
                     modifyInvestment(g); //(Option 3) TODO: Fill in
                     break;
                 case 4:
-                    getAdvice(g, i);// (Option 4) TODO: Fill in
+                    getAdvice(g, g->getWeek());// (Option 4) TODO: Fill in
                     break;
                 case 5:
                     endWeek = endOfWeek(); // (option 5) TODO: Fill in
@@ -82,9 +82,13 @@ int main()
             }
 
         }
-        ++i;
+		
+		g->nextWeek();
+        
+		
+		
         //TODO: nextWeek(); Increments the week in game class
-        cout << "we are now on week " << i << "\n" << endl; //FIXME: delete later
+        cout << "we are now on week " << g->getWeek() << "\n" << endl; //FIXME: delete later
         //TODO: explainHowWeekWent(); Gives a short story about the week based on financial outcomes
         //TODO: suggestionForNextWeek(); Gives an inner dialogue on what could be done for better financial outcome
     }
