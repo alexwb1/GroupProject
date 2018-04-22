@@ -340,8 +340,7 @@ void modifyInvestment(Game *g){
     }
 }
 void getAdvice(Game *g, int weekNum){
-    //print Port
-    cout << "Got Advice" << endl;
+
 }
 bool endOfWeek(){
     return true;
