@@ -348,6 +348,8 @@ void promptAssets(Game *g) {
 
             // buys the asset
             g->buyAsset(assetName, q);
+
+            cout << endl;
         }
         else if (buy == "0")
         {
@@ -429,16 +431,10 @@ void buyAssets(Game *g)
     stringstream converter;
 
     // print out the items currently in the user's portfolio
-    g->printPortfolio();
-
-    // if the number of assets in the user's porfolio is 0, return
-    if (g->getPortfolio().size() == 0)
-    {
-        return;
-    }
+    g->printAssets();
 
     // prompt the user for how many shares they would like to sell
-    cout << "Which of these assets would you like to sell?" << endl;
+    cout << "Which of these assets would you like to buy?" << endl;
 
     // read in the asset name from the user
     cin >> assetName;
@@ -446,22 +442,22 @@ void buyAssets(Game *g)
     // continue to prompt the user until they input a correct asset
     while (!g->containsAsset(assetName))
     {
-        g->printPortfolio();
+        g->printAssets();
         cout << "Please type the name of the asset exactly as it is displayed." << endl;
         cin >> assetName;
     }
 
-    // prompt the user about how many shares they would like to sell
-    cout << "How many shares of " << assetName << " do you want to sell? ";
-    cout << "You can sell a maximum of " << g->getNumShares(assetName) << " shares." << endl;
+    // prompt the user about how many shares they would like to buy
+    cout << "How many shares of " << assetName << " do you want to buy? ";
+    cout << "You can buy a maximum of " << g->getBuyingPower(assetName) << " shares." << endl;
 
     // read the users input convert it to an integer
     cin >> numAssets;
     converter << numAssets;
     converter >> n;
 
-    // continually ask the user for the number of shares they would like to sell until good input is given
-    while (!all_of(numAssets.begin(), numAssets.end(), ::isdigit) || g->getNumShares(assetName) < n)
+    // continually ask the user for the number of shares they would like to buy until good input is given
+    while (!all_of(numAssets.begin(), numAssets.end(), ::isdigit))
     {
         cout << "Please enter an integer between 0 and " << g->getNumShares(assetName) << endl;
         converter.clear();
@@ -470,12 +466,8 @@ void buyAssets(Game *g)
         converter >> n;
     }
 
-    // sell the asset
-    g->sellAsset(assetName, n);
-
-    // print how many shares have been sold
-    cout << "You have sold " << numAssets << " shares of " << assetName << "." << endl;
-    cout << endl;
+    // buy the asset
+    g->buyAsset(assetName, n);
 }
 
 // Definition of game play methods
@@ -531,27 +523,26 @@ void checkAccountInfo(Game *g)
 {
     // initializes variables
     int equity = 0;
-    vector<Asset> portfolio = g->getPortfolio();
+    vector<Asset> portfolio = g->getAssets();
 
     // prints out header information for the table
-    cout << "Account info:\n" << endl;
-    cout << "Asset : Quantity\n" << endl;
+    cout << "Account info:" << endl << endl;
+    cout << "Asset - Quantity" << endl << endl;
 
     // determines the total equity and prints out how many shares of each asset is owned
     for (auto &a : portfolio)
     {
-        if(a.getQuantity() != 0)
-        {
-            // prints out the asset owned and the number of shares owned
-            cout << a.getTicker() << " : " << a.getQuantity() << endl;
-            // adds up the total amount of equity
-            equity = equity + a.getQuantity()*a.getPriceAtWeek(g->getWeek());
-        }
+        // prints out the asset owned and the number of shares owned
+        cout << a.getTicker() << " - " << a.getQuantity() << endl;
+
+        // adds up the total amount of equity
+        equity = equity + a.getQuantity()*a.getPriceAtWeek(g->getWeek());
     }
 
     // prints out the current amount of cash and the amount of money that has been invested
-    cout << "\nCash on hand: $" << g->getCapital() << endl;
-    cout << "Current amount invested : $" << equity << endl;
+    cout << endl;
+    cout << "Free capital: $" << g->getCapital() << endl;
+    cout << "Total capital : $" << (equity + g->getCapital()) << endl;
     cout << endl;
 
 }
@@ -559,14 +550,20 @@ void checkAccountInfo(Game *g)
 // prints out the market price of all assets
 void checkMarkets(Game *g)
 {
-    cout << endl << "Market Prices:" << endl;
-    vector<Asset> ass = g->getAssets();
-    cout << "Asset : Current Price" << endl;
+    // prints out the current assets and their market value
+    cout << "Market Prices:" << endl;
+    cout << "Asset - Current Price" << endl;
+    cout << endl;
 
+    // retrieves the assets vector
+    vector<Asset> ass = g->getAssets();
+
+    // iterates over the assets vector printing out each one
     for (auto &a : ass)
     {
         cout << a.getTicker() << " - $" << a.getPriceAtWeek(g->getWeek()) << endl;;
     }
+    cout << endl;
 }
 
 // prompts the user to modify one of their investments
@@ -582,31 +579,36 @@ void modifyInvestment(Game *g)
     cout << endl;
     cout << "What action would you like to take? (Please enter an integer of value 1 - 3)" << endl;
 
-    //
+    // reads in user input until the given input is well formed
     while (cin >> decision)
     {
         if (decision == "1")
         {
+            // the user chooses to buy assets
             buyAssets(g);
             break;
         }
         else if (decision == "2")
         {
+            // the user chooses to sell assets
             sellAssets(g);
             break;
         }
         else if (decision == "3")
         {
+            // the users chooses to cancel
             break;
         }
         else
         {
+            // reprompts the user when input is bad
             cout << "Please enter an integer 1-5 make a decision." << endl;
             cout << "1. Buy" << endl;
             cout << "2. Sell" << endl;
             cout << "3. No action" << endl;
         }
     }
+    cout << endl;
 }
 
 // prints advice about a specific asset
@@ -630,11 +632,12 @@ void nextWeek(Game *g)
     // welcomes the user to the next week
     cout << "Good afternoon! Welcome to week " << g->getWeek() << "." << endl;
     cout << endl;
+
+    // prints out the current amount of free capital and total capital
     cout << "You now have:" << endl;
     cout << "Free capital: " << g->getCapital() << endl;
     cout << "Total capital: " << g->getTotalMoney() << endl;
     cout << endl;
-
 }
 
 // spins a wheel to determine how much initial capital the player is awarded

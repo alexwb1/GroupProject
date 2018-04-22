@@ -335,31 +335,46 @@ std::vector<Asset> Game::getAssets()
 //Print Functions
 void Game::printBrokerages()
 {
-    for (int i = 0; i < brokerages.size(); ++i){
-        std::cout << "Brokerage " << i+1 << ": " << brokerages[i].getName() << std::endl;
+    std::cout << "Brokerage - Cost Per Trade" << std::endl << std::endl;
+    for (int i = 0; i < brokerages.size(); ++i)
+    {
+        std::cout << brokerages[i].getName() << " - $" << brokerages[i].getFee() << std::endl;
     }
     std::cout << std::endl;
 }
 void Game::printAdvisers()
 {
-    for (int i = 0; i < advisers.size(); ++i){
-        std::cout << "Adviser " << i+1 << ": " << advisers[i].getName() << std::endl;
+    std::cout << "Adviser - Cost Per Meeting" << std::endl << std::endl;
+    for (int i = 0; i < advisers.size(); ++i)
+    {
+        std::cout << advisers[i].getName() << " - $" << advisers[i].getFee() << std::endl;
     }
     std::cout << std::endl;
 }
 void Game::printAssets()
 {
-    for(int i = 0; i < assets.size(); ++i){
-        std::cout << "Asset " << i+1 << ": " << assets[i].getTicker() << " - $ " << assets[i].getPriceAtWeek(week) << std::endl;
+    // print out header to explain data to user
+    std::cout << "Asset Ticker - Current Value" << std::endl;
+    std::cout << std::endl;
+
+    // iterate over the assets and print each one out
+    for(int i = 0; i < assets.size(); ++i)
+    {
+        std::cout << assets[i].getTicker() << " - $ " << assets[i].getPriceAtWeek(week) << std::endl;
     }
     std::cout << std::endl;
 }
 
 void Game::printPortfolio()
 {
+    // initialize variables
     int count = 0;
-    std::vector<Asset> portfolio = getPortfolio();
+    std::vector<Asset> portfolio = getAssets();
+
+    // print out the header for the table
+    std::cout << "Asset - Quantity" << std::endl;
     std::cout << std::endl;
+
     for(int i = 0; i < portfolio.size(); ++i)
     {
         std::cout << "Asset " << i+1 << ": " << portfolio[i].getTicker() << " - " << portfolio[i].getQuantity() << std::endl;

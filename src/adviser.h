@@ -7,7 +7,7 @@
 class Adviser
 {
 	std::string name; // string representing the adviser's name
-    double fee; // int representing the adviser's weekly fee
+    int fee; // int representing the adviser's weekly fee
     double accuracy; // double representing accuracy of the adviser's predictions; value in range [0 - 1]
 
 	//here are the sentiment diaglogues // this is kind of shitty coding but lol
@@ -24,7 +24,7 @@ public:
     Adviser(std::string name);
     std::string getName(); // returns the adviser's name
 
-	double getFee(); // returns daily adviser fee
+	int getFee(); // returns daily adviser fee
 	std::string* getAdvice(Asset*, int); // generates advice on asset movements for the current day
 
 private:
@@ -47,14 +47,14 @@ std::string Adviser::getName() {
     return name;
 }
 
-double Adviser::getFee() {
+int Adviser::getFee() {
     return fee;
 }
 
 void Adviser::generateFee()
 {
 	int intFee = rand()%10;
-	fee = intFee/100 + ((double) rand() / (RAND_MAX))/100;
+	fee = (intFee/100 + ((double) rand() / (RAND_MAX))/100)*1000;
 }
 
 double Adviser::generateAccuracy(int fee)

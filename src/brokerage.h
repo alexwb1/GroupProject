@@ -36,7 +36,7 @@ int Brokerage::getFee() {
 }
 
 void Brokerage::generateFee() {
-    fee = (rand()%10)/200 + ((double) rand() / (RAND_MAX))/100;
+    fee = (rand()%10)/200 + ((double) rand() / (RAND_MAX))*10;
 
 }
 
