@@ -71,7 +71,7 @@ int main()
                     modifyInvestment(g); //(Option 3) TODO: Fill in
                     break;
                 case 4:
-                    getAdvice(g, g->getWeek());// (Option 4) TODO: Fill in
+                    getAdvice(g, g->getWeek()+1);// (Option 4) TODO: Fill in
                     break;
                 case 5:
                     endWeek = endOfWeek(); // (option 5) TODO: Fill in
