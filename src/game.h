@@ -52,7 +52,7 @@ public:
     std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
     void printAssets(std::vector <Asset> v);
 
-    std::string getAdvice(std::string asset, int weekNum; // returns a string representing advice from the adviser
+    std::string getAdvice(std::string asset, int weekNum); // returns a string representing advice from the adviser
 
 	double getTotalMoney(); // returns sum of capital and monetary value of investments
 	
@@ -95,7 +95,7 @@ double Game::getTotalMoney()
 bool Game::nextWeek()
 {
 	
-	moneyHistory.push_back(getTotalMoney);
+	moneyHistory.push_back(getTotalMoney());
 	
     if (week <= FINAL_WEEK) {
         week++;
