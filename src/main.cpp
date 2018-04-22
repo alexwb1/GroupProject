@@ -85,7 +85,7 @@ int main()
 
         }
         ++i;
-        g->nextWeek(); Increments the week in game class
+        g->nextWeek(); //Increments the week in game class
         cout << "we are now on week " << i << "\n" << endl; //FIXME: delete later
         //TODO: explainHowWeekWent(); Gives a short story about the week based on financial outcomes
         //TODO: suggestionForNextWeek(); Gives an inner dialogue on what could be done for better financial outcome
