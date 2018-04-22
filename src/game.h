@@ -50,7 +50,7 @@ public:
     std::vector<Asset> getPortfolio(); // returns a vector of assets each of which the user owns
     void printAssets(std::vector <Asset> v);
 
-    std::string getAdvice(Asset, int); // returns a string representing advice from the adviser
+    std::string getAdvice(std::string asset, int weekNum; // returns a string representing advice from the adviser
 
 private:
 
@@ -184,8 +184,15 @@ bool Game::sellAsset(const std::string &name, unsigned int quantity) {
     }
 }
 
-std::string Game::getAdvice(Asset asset, int weekNum) {
-    return adviser->getAdvice(asset, weekNum);
+std::string Game::getAdvice(std::string asset, int weekNum) {
+    Asset *a;
+    for (int i = 0; i < assets.size(); i++) {
+        if (assets[i].getTicker() == asset) {
+            a = &assets[i];
+            break;
+        }
+    }
+    return getAdviser()->getAdvice(*a, weekNum);
 }
 std::vector<Asset> Game::getPortfolio() {
     std::vector<Asset> portfolio;
