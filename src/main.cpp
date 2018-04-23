@@ -3,7 +3,7 @@
 #include <climits>
 #include <algorithm>
 #include "game.h"
-#include <time.h>
+#include "time.h"
 using namespace std;
 
 // Welcome methods
@@ -27,10 +27,12 @@ void checkAccountInfo(Game *g);
 void checkMarkets(Game *g);
 void modifyInvestment(Game *g);
 void printAdvice(Game *g);
+void printWeeklyPerformance(Game *g);
 void nextWeek(Game *g);
 
 
-int main() {
+int main()
+{
     string name; // a string value representing the user's name
     bool game; // a boolean value representing if the user wants to play
     int startingAmount; // an int value representing the starting amount of money that a player has
@@ -102,6 +104,10 @@ int main() {
                 printAdvice(g);
                 break;
             case 5:
+                // prints weekly performance
+                printWeeklyPerformance(g);
+                break;
+            case 6:
                 // goes to the next week of game play
                 nextWeek(g);
                 break;
@@ -251,8 +257,8 @@ void promptBrokerage(Game *g)
         if (!chooseB)
         {
             cout << endl;
-            cout << "Please type the name of the brokerage exactly as it is displayed." << endl;
             g->printBrokerages();
+            cout << "Please type the name of the brokerage exactly as it is displayed." << endl;
         }
     }
     cout << "Thanks for choosing " << brokerageName << " as your brokerage." << endl;
@@ -292,7 +298,8 @@ void promptAdviser(Game *g)
 }
 
 // prints the name of the Advisers and lets the user pick one.
-void promptAssets(Game *g) {
+void promptAssets(Game *g)
+{
 
     // initializes necessary variables
     bool finished = false;
@@ -484,9 +491,10 @@ int makeDecision()
     cout << "2. Check the market" << endl;
     cout << "3. Modify an investment" << endl;
     cout << "4. Get advice" << endl;
-    cout << "5. End week" << endl;
+    cout << "5. View weekly performance" << endl;
+    cout << "6. End week" << endl;
     cout << endl;
-    cout << "What action would you like to take? (Enter an integer 1 - 5)" << endl;
+    cout << "What action would you like to take? (Enter an integer 1 - 6)" << endl;
 
     // reads in the user's decision until a correct selection is made
     while(cin >> decision) {
@@ -510,6 +518,10 @@ int makeDecision()
         if (decision == "5")
         {
             return 5;
+        }
+        if (decision == "6")
+        {
+            return 6;
         }
         else
         {
@@ -613,6 +625,7 @@ void modifyInvestment(Game *g)
 }
 
 // prints advice about a specific asset
+// FIXME: fix error when advice is asked for multiple times
 void printAdvice(Game *g)
 {
     // asks the user which asset they would like to get advice about
@@ -621,8 +634,25 @@ void printAdvice(Game *g)
     string assetName;
     cin >> assetName;
 
-// prints out the adviser's advice
-  cout << *(g->printAd(assetName)) << endl;
+    // while the user enters malformed input, keep prompting them
+    while (!g->containsAsset(assetName))
+    {
+        g->printAssets();
+        cout << "Please enter an asset name exactly as it appears above." << endl;
+        string assetName;
+        cin >> assetName;
+    }
+
+    // prints out the adviser's advice
+    cout << *(g->printAd(assetName)) << endl;
+    cout << endl;
+
+}
+
+// prints weekly performance
+void printWeeklyPerformance(Game *g)
+{
+    g->printMoneyHistory();
 }
 
 void nextWeek(Game *g)
@@ -631,7 +661,7 @@ void nextWeek(Game *g)
     g->nextWeek();
 
     // welcomes the user to the next week
-    cout << "Good afternoon! Welcome to week " << g->getWeek() << "." << endl;
+    cout << "Good morning! Welcome to week " << g->getWeek() << "." << endl;
     cout << endl;
 
     // prints out the current amount of free capital and total capital
