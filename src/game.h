@@ -60,6 +60,7 @@ public:
 
 	int getTotalMoney(); // returns sum of capital and monetary value of investments
     void printMoneyHistory(); // prints the history of account balances
+    std::vector<int> getMoneyHistory(); // returns the money history vector
 
 private:
 
@@ -574,4 +575,9 @@ void Game::printMoneyHistory()
         std::cout << "Week " << i << " - $" << moneyHistory[i] << std::endl;
     }
     std::cout << std::endl;
+}
+
+std::vector<int> Game::getMoneyHistory()
+{
+    return moneyHistory;
 }

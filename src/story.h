@@ -40,57 +40,82 @@ class Story{
         //Not sure if we need any private variables
         std::string name; //Is the player's name
     public:
-    srand(time(NULL));
-      Story(std::string name);
-      std::string getName();
-      int getWeeklyValue(int totalMoney, int percentIncrease); //gets value to get random story of week
-      void getWeeklyStory(int weeklyValue); //contains (options 1-5);
-      //(if weekLyValue = 1)
-      void veryBadStory();
-          void veryBadStory1();
-          void veryBadStory2();
-          void veryBadStory3();
-          void veryBadStory4();
-          void veryBadStory5();//TODO: selects 1 of 5 very bad stories 
-      //(if weekLyValue = 2)
-      void badStory(); //TODO: selects 1 of 5 bad stories
-          void badStory1();
-          void badStory2();
-          void badStory3();
-          void badStory4();
-          void badStory5();
-      //(if weekLyValue = 3)
-      void neutralStory();
-          void neutralStory1();
-          void neutralStory2();
-          void neutralStory3();
-          void neutralStory4();
-          void neutralStory5();//TODO: selects 1 of 5 neutral stories
-      //(if weekLyValue = 4)
-      void goodStory();
-          void goodStory1();
-          void goodStory2();
-          void goodStory3();
-          void goodStory4();
-          void goodStory5();//TODO: selects 1 of 5 good stories
-      //(if weekLyValue = 5)
-      void veryGoodStory();
-          void veryGoodStory1();
-          void veryGoodStory2();
-          void veryGoodStory3();
-          void veryGoodStory4();
-          void veryGoodStory5();//TODO: selects 1 of 5 very good stories
-
-      void endStory1();
-      void endStory2();
-      void endStory3();
-      void endStory4();
-      void endStory5();
+        Story(std::string name);
+        std::string getName();
+        int getWeeklyValue(int totalMoney, int percentIncrease); //gets value to get random story of week
+        void getWeeklyStory(int currentPrice, int previousPrice); //contains (options 1-5);
+        //(if weekLyValue = 1)
+        void veryBadStory();
+        void veryBadStory1();
+        void veryBadStory2();
+        void veryBadStory3();
+        void veryBadStory4();
+        void veryBadStory5();
+        //(if weekLyValue = 2)
+        void badStory();
+        void badStory1();
+        void badStory2();
+        void badStory3();
+        void badStory4();
+        void badStory5();
+        //(if weekLyValue = 3)
+        void neutralStory();
+        void neutralStory1();
+        void neutralStory2();
+        void neutralStory3();
+        void neutralStory4();
+        void neutralStory5();
+        //(if weekLyValue = 4)
+        void goodStory();
+        void goodStory1();
+        void goodStory2();
+        void goodStory3();
+        void goodStory4();
+        void goodStory5();
+        //(if weekLyValue = 5)
+        void veryGoodStory();
+        void veryGoodStory1();
+        void veryGoodStory2();
+        void veryGoodStory3();
+        void veryGoodStory4();
+        void veryGoodStory5();
+        void endStory(int choice);
+        void endStory1();
+        void endStory2();
+        void endStory3();
+        void endStory4();
+        void endStory5();
 };
-//Story constructor
-Story::Story(std::string name){
-  this->name = name;
+
+Story::Story(std::string name)
+{}
+
+void Story::getWeeklyStory(int currentPrice, int previousPrice)
+{
+    double change = currentPrice / (double) previousPrice;
+
+    if (change > 1.2)
+    {
+        veryGoodStory();
+    }
+    else if (change > 1.0)
+    {
+        goodStory();
+    }
+    else if (change > 0.9)
+    {
+        neutralStory();
+    }
+    else if (change <= 0.9)
+    {
+        badStory();
+    }
+    else if (change < 0.8)
+    {
+        veryBadStory();
+    }
 }
+
 std::string Story::getName(){
     return name;
 }
@@ -250,11 +275,11 @@ void Story::badStory5(){
 
 //-----------------NEUTRAL STORIES----------
 //Player sleeps easy
-void Stroy::neutralStory(){ /*---Chooses 1 of 5 neutral stories-----*/
+void Story::neutralStory(){ /*---Chooses 1 of 5 neutral stories-----*/
     unsigned short int choice = (rand()%5)+1;
     switch(choice){
         case 1:{
-            Story::neutralStory1();
+            neutralStory1();
             break;
         }
         case 2:{
@@ -482,27 +507,26 @@ void Story::veryGoodStory5(){
 }
 
 /*-------------Ending Stories-------------*/
-void Story::endingStory(){ /*---Chooses 1 of 5 ending stories-----*/
-    unsigned short int choice = (rand()%5)+1;
+void Story::endStory(int choice){ /*---Chooses 1 of 5 ending stories-----*/
     switch(choice){
         case 1:{
-            Story::endingStory1();
+            Story::endStory1();
             break;
         }
         case 2:{
-            Story::endingStory2();
+            Story::endStory2();
             break;
         }
         case 3:{
-            Story::endingStory3();
+            Story::endStory3();
             break;
         }
         case 4:{
-            Story::endingStory4();
+            Story::endStory4();
             break;
         }
         case 5:{
-            Story::endingStory5();
+            Story::endStory5();
             break;
         }
         default:{

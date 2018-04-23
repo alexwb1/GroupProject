@@ -3,7 +3,9 @@
 #include <climits>
 #include <algorithm>
 #include "game.h"
-#include "time.h"
+#include "story.h"
+#include <ctime>
+
 using namespace std;
 
 // Welcome methods
@@ -69,8 +71,8 @@ int main()
 
     // prints the users capital
     cout << "You now have:" << endl;
-    cout << "Free capital: " << g->getCapital() << endl;
-    cout << "Total capital: " << g->getTotalMoney() << endl;
+    cout << "Free capital: $" << g->getCapital() << endl;
+    cout << "Total capital: $" << g->getTotalMoney() << endl;
     cout << endl;
 
     // initializes variables for game play
@@ -660,14 +662,32 @@ void nextWeek(Game *g)
     // advances the game to the next week
     g->nextWeek();
 
+    if (g->getWeek() % 5 == 0)
+    {
+        // create story object
+        Story s(g->getName());
+
+        // get money history
+        vector<int> history = g->getMoneyHistory();
+
+        // extract the previous and current prices
+        long length = history.size();
+        int currentPrice = history[length - 1];
+        int previousPrice = history[length - 4];
+
+        // prints out the weekly story
+        s.getWeeklyStory(currentPrice, previousPrice);
+        cout << endl;
+    }
+
     // welcomes the user to the next week
     cout << "Good morning! Welcome to week " << g->getWeek() << "." << endl;
     cout << endl;
 
     // prints out the current amount of free capital and total capital
     cout << "You now have:" << endl;
-    cout << "Free capital: " << g->getCapital() << endl;
-    cout << "Total capital: " << g->getTotalMoney() << endl;
+    cout << "Free capital: $" << g->getCapital() << endl;
+    cout << "Total capital: $" << g->getTotalMoney() << endl;
     cout << endl;
 }
 
