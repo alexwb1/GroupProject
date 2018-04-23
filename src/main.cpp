@@ -527,7 +527,7 @@ int makeDecision()
         }
         else
         {
-            cout << "Please enter an integer 1 - 5." << endl;
+            cout << "Please enter an integer 1 - 6." << endl;
             continue;
         }
     }
@@ -627,7 +627,6 @@ void modifyInvestment(Game *g)
 }
 
 // prints advice about a specific asset
-// FIXME: fix error when advice is asked for multiple times
 void printAdvice(Game *g)
 {
     // asks the user which asset they would like to get advice about

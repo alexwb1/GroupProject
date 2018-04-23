@@ -72,7 +72,9 @@ double Adviser::generateAccuracy(int fee)
 
 std::string* Adviser::getAdvice(Asset* asset, int week) {
 	int sentiment = generateSentiment(*asset, week);
-	return &sentimentDialogue[sentiment][rand()%5];
+	int randValue = rand()%5;
+	if (sentiment >= 5) sentiment = 4;
+	return &sentimentDialogue[sentiment][randValue];
 
 }
 
