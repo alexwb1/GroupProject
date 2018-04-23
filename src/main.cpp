@@ -211,18 +211,24 @@ int promptInitialCapital(string name)
             // read in and return the user-chosen starting capital
             string initialCapital;
             cin >> initialCapital;
-            while (!all_of(initialCapital.begin(), initialCapital.end(), ::isdigit))
-            {
-                cout << "Please enter an integer value greater than 0" << endl;
-                cin.clear();
-                cin >> initialCapital;
-            }
 
             // convert the string value to an int
             int c = 0;
             stringstream ss;
             ss << initialCapital;
             ss >> c;
+
+            while (!all_of(initialCapital.begin(), initialCapital.end(), ::isdigit) || c > INT_MAX / 2)
+            {
+                cout << "Please enter an integer value greater than 0 and less than " << INT_MAX / 2 << "." << endl;
+                cin.clear();
+                cin >> initialCapital;
+                ss.clear();
+                ss << initialCapital;
+                ss >> c;
+            }
+
+
             return c;
         }
         else if (decision == "2")
