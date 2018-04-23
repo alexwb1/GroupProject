@@ -118,6 +118,11 @@ int main()
         }
     }
 
+    cout << "GAME OVER!" << endl;
+    vector<int> h = g->getMoneyHistory();
+    cout << "You turned $" << h[0] << " into $" << h[h.size() - 1] << ". ";
+    cout << "That's a " << ((h[h.size() - 1] - h[0]) * 100 / (double) h[0]) << "% return." << endl;
+    cout << "Thanks for playing!";
 
     return 0;
 }
